@@ -13,9 +13,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 _aimDir;
 
     private float _joystickDeadzone = 0.2f;
-    
-    // private NavMeshAgent _agent;
-    // public Camera cam;
+
+    private Animator _animator;
     
     public void Move(InputAction.CallbackContext dir)
     {
@@ -65,18 +64,14 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        // _agent = GetComponent<NavMeshAgent>();
-        // _agent.updateRotation = false;
-        // _agent.updateUpAxis = false;
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     Debug.Log("moving player to: " + cam.ScreenToWorldPoint(Input.mousePosition));
-        //     _agent.SetDestination(cam.ScreenToWorldPoint(Input.mousePosition));
-        // }
+        HandleAnimation();
+        
+        GetComponent<WeaponScript>().Aim(_aimDir);
     }
 
     private void FixedUpdate()
@@ -87,5 +82,31 @@ public class PlayerController : MonoBehaviour
     private void HandleMovement()
     {
         transform.Translate(_moveDir * speed * Time.deltaTime);
+    }
+
+    private void HandleAnimation()
+    {
+        if (_moveDir.x > _joystickDeadzone)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        if (_moveDir.x < -_joystickDeadzone)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        
+        if (_moveDir != Vector2.zero)
+        {
+            _animator.SetFloat("Speed", 1);   
+        }
+        else
+        {
+            _animator.SetFloat("Speed", 0);   
+        }
+    }
+
+    private void HandleAttacks()
+    {
+        
     }
 }

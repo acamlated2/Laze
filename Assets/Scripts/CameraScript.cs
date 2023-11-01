@@ -5,13 +5,17 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    [SerializeField] private Transform target;
-
+    private Transform _player;
     private float _offset = -10;
+
+    private void Awake()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
     private void Update()
     {
-        Vector3 desiredPos = target.transform.position;
+        Vector3 desiredPos = _player.position;
         desiredPos.z += _offset;
         
         transform.position = desiredPos;

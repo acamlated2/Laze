@@ -10,6 +10,8 @@ public class EnemyScript : MonoBehaviour
 
     private GameObject _player;
 
+    [SerializeField] private float health = 50;
+
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -21,6 +23,18 @@ public class EnemyScript : MonoBehaviour
 
     private void Update()
     {
-        _agent.SetDestination(_player.transform.position);
+        //_agent.SetDestination(_player.transform.position);
+    }
+
+    public void Damage(float damage)
+    {
+        Debug.Log("damaged");
+        
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
