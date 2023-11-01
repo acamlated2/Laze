@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 8910156908403677631}
   - component: {fileID: 1706203488787782180}
   - component: {fileID: 3855139874018100383}
-  - component: {fileID: 1231134625330008536}
-  - component: {fileID: 3548838205782119121}
+  - component: {fileID: 6979989366102470638}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Untagged
@@ -102,35 +101,8 @@ MonoBehaviour:
   speed: 10
   distanceToDelete: 50
   damage: 10
---- !u!50 &1231134625330008536
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7822237227571562585}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &3548838205782119121
-BoxCollider2D:
+--- !u!60 &6979989366102470638
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -171,6 +143,13 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.07790124, y: -0.04570148}
+      - {x: -0.07640852, y: -0.07591472}
+      - {x: -0.024915818, y: -0.07784512}
+      - {x: 0.017508402, y: -0.06707069}
+      - {x: 0.0670707, y: 0.016633008}
+      - {x: 0.068204254, y: 0.066066116}
+      - {x: 0.036857486, y: 0.067789}
+  m_UseDelaunayMesh: 0

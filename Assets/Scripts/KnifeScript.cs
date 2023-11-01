@@ -29,13 +29,11 @@ public class KnifeScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<EnemyScript>().Damage(damage);
-            
-            Debug.Log("enemy detected");
             
             Destroy(gameObject);
         }

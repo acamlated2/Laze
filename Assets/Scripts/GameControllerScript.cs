@@ -20,12 +20,26 @@ public class GameControllerScript : MonoBehaviour
     
     // game objects
     private GameObject _player;
+
+    private GameObject _base;
+    private GameObject[] _towers;
+
+    private List<GameObject> _targetables = new List<GameObject>();
     
     private void Awake()
     {
         _playerInput = new PlayerInputAction();
         
         _player = GameObject.FindGameObjectWithTag("Player");
+        _base = GameObject.FindGameObjectWithTag("Base");
+        _towers = GameObject.FindGameObjectsWithTag("Tower");
+
+        _targetables.Add(_player);
+        _targetables.Add(_base);
+        for (int i = 0; i < _towers.Length; i++)
+        {
+            _targetables.Add(_towers[i]);
+        }
     }
 
     private void OnEnable()
@@ -78,5 +92,24 @@ public class GameControllerScript : MonoBehaviour
         _moveDownList.Disable();
         _select.Disable();
         _deselect.Disable();
+    }
+
+    public GameObject GetClosestTarget(Transform enemyTransform)
+    {
+        GameObject closestObject = null;
+        float closestDistance = float.MaxValue;
+        
+        for (int i = 0; i < _targetables.Count; i++)
+        {
+            float distance = Vector2.Distance(enemyTransform.position, _targetables[i].transform.position);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestObject = _targetables[i];
+            }
+        }
+
+        return closestObject;
     }
 }

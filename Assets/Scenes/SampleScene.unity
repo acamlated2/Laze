@@ -134385,7 +134385,12 @@ PrefabInstance:
     - target: {fileID: 564761238289282057, guid: 4ee1726a73f3421448031972a09e5e60,
         type: 3}
       propertyPath: m_Name
-      value: Enemy Base
+      value: Goblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 3120778120906901110, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
         type: 3}

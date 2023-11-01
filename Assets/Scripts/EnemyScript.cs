@@ -12,6 +12,8 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField] private float health = 50;
 
+    private GameObject _gameController;
+
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -19,17 +21,20 @@ public class EnemyScript : MonoBehaviour
         _agent.updateUpAxis = false;
         
         _player = GameObject.FindGameObjectWithTag("Player");
+
+        _gameController = GameObject.FindGameObjectWithTag("GameController");
     }
 
     private void Update()
     {
-        //_agent.SetDestination(_player.transform.position);
+        var gameControllerScript = _gameController.GetComponent<GameControllerScript>();
+
+        GameObject target = gameControllerScript.GetClosestTarget(transform);
+        _agent.SetDestination(target.transform.position);
     }
 
     public void Damage(float damage)
     {
-        Debug.Log("damaged");
-        
         health -= damage;
 
         if (health <= 0)
