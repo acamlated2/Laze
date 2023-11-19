@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4423646959687594707}
   - component: {fileID: 8848783928568128262}
+  - component: {fileID: 4031249698842193081}
+  - component: {fileID: 7537865353207642872}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: GameController
@@ -44,3 +46,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcdfe58cb819ea949a67e49d2601497d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4031249698842193081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417097394962929523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f5a255cde101c49bd5d2caac75f1ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  second: 0
+  minute: 0
+--- !u!114 &7537865353207642872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417097394962929523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 992030938881270429f19a35bcd3ae62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 564761238289282057, guid: 4ee1726a73f3421448031972a09e5e60,
+    type: 3}
+  spawnDistance: 10
+  timerMax: 1

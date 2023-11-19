@@ -26,6 +26,12 @@ public class GameControllerScript : MonoBehaviour
 
     private List<GameObject> _targetables = new List<GameObject>();
     
+    // player
+    private float _playerHealth = 100;
+    
+    // canvas
+    private GameObject _canvas;
+    
     private void Awake()
     {
         _playerInput = new PlayerInputAction();
@@ -40,6 +46,8 @@ public class GameControllerScript : MonoBehaviour
         {
             _targetables.Add(_towers[i]);
         }
+        
+        _canvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 
     private void OnEnable()
@@ -111,5 +119,19 @@ public class GameControllerScript : MonoBehaviour
         }
 
         return closestObject;
+    }
+
+    public void DamagePlayer(float damage)
+    {
+        _playerHealth -= damage;
+        
+        _canvas.GetComponent<StatsScript>().ChangeHP(_playerHealth);
+
+        if (_playerHealth <= 0)
+        {
+            _targetables.RemoveAt(0);
+            
+            Destroy(_player.transform.gameObject);
+        }
     }
 }

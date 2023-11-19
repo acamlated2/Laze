@@ -15,9 +15,12 @@ public class CameraScript : MonoBehaviour
 
     private void Update()
     {
-        Vector3 desiredPos = _player.position;
-        desiredPos.z += _offset;
+        if (_player != null)
+        {
+            Vector3 desiredPos = _player.position;
+            desiredPos.z += _offset;
         
-        transform.position = desiredPos;
+            transform.position = desiredPos;
+        }
     }
 }

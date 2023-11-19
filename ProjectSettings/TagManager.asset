@@ -7,6 +7,11 @@ TagManager:
   - Enemy
   - Base
   - Tower
+  - Canvas
+  - TimeMinutes
+  - TimeSeconds
+  - TimeDivider
+  - Towers
   layers:
   - Default
   - TransparentFX

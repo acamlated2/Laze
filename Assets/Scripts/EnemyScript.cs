@@ -14,6 +14,12 @@ public class EnemyScript : MonoBehaviour
 
     private GameObject _gameController;
 
+    [SerializeField] private float damage = 10;
+
+    private bool _attackingMelee;
+    private float _meleeTimer;
+    private float _meleeTimerMax = 1;
+
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -31,6 +37,8 @@ public class EnemyScript : MonoBehaviour
 
         GameObject target = gameControllerScript.GetClosestTarget(transform);
         _agent.SetDestination(target.transform.position);
+        
+        HandleAttacks();
     }
 
     public void Damage(float damage)
@@ -40,6 +48,39 @@ public class EnemyScript : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _attackingMelee = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _attackingMelee = false;
+
+            _meleeTimer = 0;
+        }
+    }
+
+    private void HandleAttacks()
+    {
+        if (_attackingMelee)
+        {
+            _meleeTimer -= 1 * Time.deltaTime;
+
+            if (_meleeTimer <= 0)
+            {
+                _meleeTimer = _meleeTimerMax;
+                
+                _gameController.GetComponent<GameControllerScript>().DamagePlayer(damage);
+            }
         }
     }
 }

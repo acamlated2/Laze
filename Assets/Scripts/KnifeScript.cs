@@ -21,7 +21,12 @@ public class KnifeScript : MonoBehaviour
         transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
         transform.Translate(transform.right * speed * Time.deltaTime, Space.World);
 
-        float distanceToPlayer = Vector2.Distance(transform.position, _player.transform.position);
+        float distanceToPlayer = distanceToDelete;
+        
+        if (_player != null)
+        {
+            distanceToPlayer = Vector2.Distance(transform.position, _player.transform.position);
+        }
         
         if (distanceToPlayer >= distanceToDelete)
         {
