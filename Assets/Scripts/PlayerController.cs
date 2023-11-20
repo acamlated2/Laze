@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
     }
     public void Aim(InputAction.CallbackContext dir)
     {
-        //Debug.Log("aim dir: " + dir.ReadValue<Vector2>());
         if (CheckDeadZone(dir.ReadValue<Vector2>()))
         {
             _aimDir = dir.ReadValue<Vector2>();
@@ -71,7 +70,7 @@ public class PlayerController : MonoBehaviour
     {
         HandleAnimation();
         
-        GetComponent<WeaponScript>().Aim(_aimDir);
+        GetComponent<WeaponManagerScript>().Aim(_aimDir);
     }
 
     private void FixedUpdate()

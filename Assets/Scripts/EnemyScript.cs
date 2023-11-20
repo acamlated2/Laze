@@ -6,9 +6,14 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
-    private NavMeshAgent _agent;
+    public enum Type
+    {
+        Goblin
+    }
 
-    private GameObject _player;
+    private Type _type = Type.Goblin;
+    
+    private NavMeshAgent _agent;
 
     [SerializeField] private float health = 50;
 
@@ -20,13 +25,13 @@ public class EnemyScript : MonoBehaviour
     private float _meleeTimer;
     private float _meleeTimerMax = 1;
 
+    [SerializeField] private GameObject expPrefab;
+
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        
-        _player = GameObject.FindGameObjectWithTag("Player");
 
         _gameController = GameObject.FindGameObjectWithTag("GameController");
     }
@@ -48,6 +53,8 @@ public class EnemyScript : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            Debug.Log("enemy died");
+            SpawnExp();
         }
     }
 
@@ -81,6 +88,20 @@ public class EnemyScript : MonoBehaviour
                 
                 _gameController.GetComponent<GameControllerScript>().DamagePlayer(damage);
             }
+        }
+    }
+
+    private void SpawnExp()
+    {
+        GameObject newExp;
+        newExp = Instantiate(expPrefab, transform.position, Quaternion.identity);
+        var newExpScript = newExp.GetComponent<ExpScript>();
+        
+        switch (_type)
+        {
+            case Type.Goblin:
+                newExpScript.SetValue(5);
+                break;
         }
     }
 }

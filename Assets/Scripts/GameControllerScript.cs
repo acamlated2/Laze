@@ -28,6 +28,7 @@ public class GameControllerScript : MonoBehaviour
     
     // player
     private float _playerHealth = 100;
+    private float _playerExp = 100;
     
     // canvas
     private GameObject _canvas;
@@ -125,7 +126,7 @@ public class GameControllerScript : MonoBehaviour
     {
         _playerHealth -= damage;
         
-        _canvas.GetComponent<StatsScript>().ChangeHP(_playerHealth);
+        _canvas.GetComponent<StatsScript>().ChangeHp(_playerHealth);
 
         if (_playerHealth <= 0)
         {
@@ -133,5 +134,12 @@ public class GameControllerScript : MonoBehaviour
             
             Destroy(_player.transform.gameObject);
         }
+    }
+
+    public void AddExp(float exp)
+    {
+        _playerExp += exp;
+        
+        _canvas.GetComponent<StatsScript>().ChangeExp(_playerExp);
     }
 }

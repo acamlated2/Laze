@@ -3,30 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnifeScript : MonoBehaviour
+public class KnifeScript : WeaponScript
 {
-    [SerializeField] private float speed = 10;
-    [SerializeField] private float distanceToDelete = 50;
-    [SerializeField] private float damage = 10;
-
-    private GameObject _player;
-
-    private void Awake()
+    protected override void Awake()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
+        base.Awake();
+
+        type = WeaponManagerScript.Type.ThrowingKnife;
     }
 
     private void Update()
     {
         transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
         transform.Translate(transform.right * speed * Time.deltaTime, Space.World);
-
-        float distanceToPlayer = distanceToDelete;
         
-        if (_player != null)
-        {
-            distanceToPlayer = Vector2.Distance(transform.position, _player.transform.position);
-        }
+        float distanceToPlayer = Vector2.Distance(transform.position, playerSpawnPos);
         
         if (distanceToPlayer >= distanceToDelete)
         {
@@ -38,9 +29,9 @@ public class KnifeScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<EnemyScript>().Damage(damage);
-            
             Destroy(gameObject);
+            
+            other.gameObject.GetComponent<EnemyScript>().Damage(damage);
         }
     }
 }

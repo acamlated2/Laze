@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6550513739040762677}
+  - component: {fileID: 4710883721476012550}
   - component: {fileID: 5517301895471049443}
   - component: {fileID: 3958204754293008409}
   - component: {fileID: 3769549252532497095}
-  - component: {fileID: 4710883721476012550}
   - component: {fileID: -5114892449206420145}
   m_Layer: 0
   m_Name: Goblin
@@ -37,6 +37,22 @@ Transform:
   - {fileID: 4406517510752182310}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4710883721476012550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564761238289282057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254884a4649a7c64b82bde9e7a65eeda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 30
+  damage: 10
+  expPrefab: {fileID: 8471062301703778376, guid: d75e421c4e847a9419d55fb6171c8fef,
+    type: 3}
 --- !u!61 &5517301895471049443
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -97,7 +113,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -149,19 +165,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4710883721476012550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564761238289282057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 254884a4649a7c64b82bde9e7a65eeda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 50
 --- !u!50 &-5114892449206420145
 Rigidbody2D:
   serializedVersion: 4

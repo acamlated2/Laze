@@ -9,16 +9,13 @@ public class StatsScript : MonoBehaviour
     [SerializeField] private TMP_Text hpText;
     [SerializeField] private TMP_Text expText;
 
-    public void ChangeHP(float hp)
+    public void ChangeHp(float hp)
     {
         hpText.text = hp.ToString();
     }
-
-    private void Update()
+    
+    public void ChangeExp(float exp)
     {
-        if (Input.GetKeyDown("l"))
-        {
-            ChangeHP(10);
-        }
+        expText.text = exp.ToString();
     }
 }
