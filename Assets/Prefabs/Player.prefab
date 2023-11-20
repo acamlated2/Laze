@@ -76,6 +76,13 @@ MonoBehaviour:
   - {fileID: 7822237227571562585, guid: f34cdbc760959984e8aafab0b582d462, type: 3}
   - {fileID: 7822237227571562585, guid: f34cdbc760959984e8aafab0b582d462, type: 3}
   - {fileID: 7822237227571562585, guid: f34cdbc760959984e8aafab0b582d462, type: 3}
+  burstTimerMax:
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  burstAmount: 0500000000000000000000000000000000000000
 --- !u!212 &2050446533572863881
 SpriteRenderer:
   m_ObjectHideFlags: 0
