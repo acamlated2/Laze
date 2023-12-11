@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawningScript : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private float spawnMinDistance = 20;
     [SerializeField] private float spawnMaxDistance = 30;
     
@@ -67,6 +67,14 @@ public class EnemySpawningScript : MonoBehaviour
         } while (!canSpawn);
 
         GameObject newEnemy;
-        newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        newEnemy = Instantiate(GetRandomPrefab(), spawnPosition, Quaternion.identity);
+    }
+
+    private GameObject GetRandomPrefab()
+    {
+        int randomNum = Random.Range(0, enemyPrefabs.Length);
+        GameObject randomPrefab = enemyPrefabs[randomNum];
+        
+        return randomPrefab;
     }
 }

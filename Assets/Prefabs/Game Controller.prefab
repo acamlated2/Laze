@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 4031249698842193081}
   - component: {fileID: 7537865353207642872}
   - component: {fileID: 5310004574897042588}
+  - component: {fileID: 8356891338369778580}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: GameController
@@ -145,7 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcdfe58cb819ea949a67e49d2601497d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetables: []
+  targetables: []
+  exps: []
 --- !u!114 &4031249698842193081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,8 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992030938881270429f19a35bcd3ae62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 564761238289282057, guid: 4ee1726a73f3421448031972a09e5e60,
-    type: 3}
+  enemyPrefabs: []
   spawnMinDistance: 20
   spawnMaxDistance: 30
   timerMax: 1
@@ -190,7 +191,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 0
-  _weaponManagers: []
+--- !u!114 &8356891338369778580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417097394962929523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3922df2464982b4449a9b1a1d83982f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7912744516085204787
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,7 +52,6 @@ public class ObjectWithStatsScript : MonoBehaviour
 
     public virtual void Damage(float damage)
     {
-        Debug.Log("test");
         health -= damage;
 
         if (health <= 0)

@@ -7,7 +7,7 @@ public class WeaponScript : MonoBehaviour
 {
     protected BaseWeaponManagerScript.Type type;
 
-    [SerializeField] protected float speed = 10;
+    [SerializeField] protected float speed = 20;
     [SerializeField] protected float distanceToDelete = 50;
     [SerializeField] protected float damage = 10;
     

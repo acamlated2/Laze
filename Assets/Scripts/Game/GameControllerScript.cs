@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,26 +6,12 @@ using UnityEngine.InputSystem;
 
 public class GameControllerScript : MonoBehaviour
 {
-    private PlayerInputAction _playerInput;
-    // gameplay input action
-    private InputAction _move;
-    private InputAction _aim;
-    private InputAction _interact;
-    private InputAction _skill;
-    
-    // upgrading & menu input action
-    private InputAction _moveUpList;
-    private InputAction _moveDownList;
-    private InputAction _select;
-    private InputAction _deselect;
-    
-    // game objects
     private GameObject _player;
-
+    
     private GameObject _base;
     private GameObject[] _towers;
 
-    public List<GameObject> _targetables = new List<GameObject>();
+    public List<GameObject> targetables = new List<GameObject>();
     
     // player
     private float _playerExp = 100;
@@ -32,74 +19,30 @@ public class GameControllerScript : MonoBehaviour
     // canvas
     private GameObject _canvas;
     
+    // exp
+    public List<GameObject> exps = new List<GameObject>();
+    [SerializeField] [Min(0.1f)] private float expToPlayerAttractDistance = 5;
+    [SerializeField] [Min(0.1f)] private float expToExpAttractDistance = 3;
+    
     private void Awake()
     {
-        _playerInput = new PlayerInputAction();
-        
         _player = GameObject.FindGameObjectWithTag("Player");
         _base = GameObject.FindGameObjectWithTag("Base");
         _towers = GameObject.FindGameObjectsWithTag("Tower");
 
-        _targetables.Add(_player);
-        _targetables.Add(_base);
+        targetables.Add(_player);
+        targetables.Add(_base);
         for (int i = 0; i < _towers.Length; i++)
         {
-            _targetables.Add(_towers[i]);
+            targetables.Add(_towers[i]);
         }
         
         _canvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 
-    private void OnEnable()
+    private void Update()
     {
-        var playerScript = _player.GetComponent<PlayerController>();
-        
-        // gameplay
-        _move = _playerInput.Gameplay.Move;
-        _move.Enable();
-        _move.performed += playerScript.Move;
-        _move.canceled += playerScript.Move;
-
-        _aim = _playerInput.Gameplay.Aim;
-        _aim.Enable();
-        _aim.performed += playerScript.Aim;
-        _aim.canceled += playerScript.Aim;
-
-        _interact = _playerInput.Gameplay.Interact;
-        _interact.Enable();
-        _interact.performed += playerScript.Interact;
-
-        _skill = _playerInput.Gameplay.Skill;
-        _skill.Enable();
-        _skill.performed += playerScript.Skill;
-        
-        // upgrading & menu
-        _moveUpList = _playerInput.UpgradingMenu.MoveUpList;
-        _moveUpList.Enable();
-
-        _moveDownList = _playerInput.UpgradingMenu.MoveDownList;
-        _moveDownList.Enable();
-
-        _select = _playerInput.UpgradingMenu.Select;
-        _select.Enable();
-
-        _deselect = _playerInput.UpgradingMenu.Deselect;
-        _deselect.Enable();
-    }
-
-    private void OnDisable()
-    {
-        // gameplay
-        _move.Disable();
-        _aim.Disable();
-        _interact.Disable();
-        _skill.Disable();
-        
-        // upgrading & menu
-        _moveUpList.Disable();
-        _moveDownList.Disable();
-        _select.Disable();
-        _deselect.Disable();
+        AttractExp();
     }
 
     public GameObject GetClosestTarget(Transform enemyTransform)
@@ -107,14 +50,14 @@ public class GameControllerScript : MonoBehaviour
         GameObject closestObject = null;
         float closestDistance = float.MaxValue;
         
-        for (int i = 0; i < _targetables.Count; i++)
+        for (int i = 0; i < targetables.Count; i++)
         {
-            float distance = Vector2.Distance(enemyTransform.position, _targetables[i].transform.position);
+            float distance = Vector2.Distance(enemyTransform.position, targetables[i].transform.position);
 
             if (distance < closestDistance)
             {
                 closestDistance = distance;
-                closestObject = _targetables[i];
+                closestObject = targetables[i];
             }
         }
 
@@ -123,11 +66,11 @@ public class GameControllerScript : MonoBehaviour
 
     public void RemoveTarget(GameObject target)
     {
-        for (int i = 0; i < _targetables.Count; i++)
+        for (int i = 0; i < targetables.Count; i++)
         {
-            if (_targetables[i] == target)
+            if (targetables[i] == target)
             {
-                _targetables.RemoveAt(i);
+                targetables.RemoveAt(i);
             }
         }
     }
@@ -137,5 +80,50 @@ public class GameControllerScript : MonoBehaviour
         _playerExp += exp;
         
         _canvas.GetComponent<StatsScript>().ChangeExp(_playerExp);
+    }
+
+    private void AttractExp()
+    {
+        for (int i = 0; i < exps.Count; i++)
+        {
+            float distanceToPlayer = Vector2.Distance(exps[i].transform.position, _player.transform.position);
+
+            if (distanceToPlayer <= expToPlayerAttractDistance)
+            {
+                exps[i].GetComponent<ExpScript>().AttractToPoint(_player.transform.position);
+                continue;
+            }
+
+            for (int j = 0; j < exps.Count; j++)
+            {
+                if (exps[j] == exps[i])
+                {
+                    continue;
+                }
+                
+                float distanceToExp = Vector2.Distance(exps[i].transform.position, exps[j].transform.position);
+
+                if (distanceToExp <= expToExpAttractDistance)
+                {
+                    exps[i].GetComponent<ExpScript>().AttractToPoint(exps[j].transform.position);
+                }
+            }
+        }
+    }
+
+    public void AddToList(List<GameObject> list, GameObject gameobject)
+    {
+        list.Add(gameobject);
+    }
+
+    public void RemoveFromList(List<GameObject> list, GameObject gameobject)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i] == gameobject)
+            {
+                list.RemoveAt(i);
+            }
+        }
     }
 }

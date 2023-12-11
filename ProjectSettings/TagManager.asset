@@ -12,6 +12,7 @@ TagManager:
   - TimeSeconds
   - TimeDivider
   - Towers
+  - Exp
   layers:
   - Default
   - TransparentFX
