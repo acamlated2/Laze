@@ -16,12 +16,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - TileMap
   - Water
   - UI
   - Weapons
-  - 
-  - 
+  - Enemy
+  - Building
   - 
   - 
   - 
