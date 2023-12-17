@@ -13,6 +13,7 @@ TagManager:
   - TimeDivider
   - Towers
   - Exp
+  - Shield
   layers:
   - Default
   - TransparentFX

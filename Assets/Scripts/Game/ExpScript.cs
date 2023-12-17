@@ -32,7 +32,7 @@ public class ExpScript : MonoBehaviour
         transform.localScale = new Vector3(scale, scale, scale);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         var gameControllerScript = _gameController.GetComponent<GameControllerScript>();
         

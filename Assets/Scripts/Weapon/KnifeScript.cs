@@ -27,11 +27,11 @@ public class KnifeScript : WeaponScript
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Shield"))
         {
             Destroy(gameObject);
             
-            other.gameObject.GetComponent<EnemyScript>().Damage(damage);
+            other.gameObject.GetComponent<ObjectWithStatsScript>().Damage(damage);
         }
     }
 }
