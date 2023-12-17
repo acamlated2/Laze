@@ -14,7 +14,9 @@ public class ExpScript : MonoBehaviour
     [SerializeField] [Min(0.1f)] private float attractSpeed = 5;
     [SerializeField] [Min(0.1f)] private float maxAttractSpeed = 20;
 
-    [SerializeField] private GameObject expPrefab;
+    private GameObject _expPrefab;
+
+    public int index;
 
     private void Awake()
     {
@@ -22,6 +24,8 @@ public class ExpScript : MonoBehaviour
 
         var gameControllerScript = _gameController.GetComponent<GameControllerScript>();
         gameControllerScript.AddToList(gameControllerScript.exps, gameObject);
+
+        _expPrefab = _gameController.GetComponent<GameControllerScript>().expPrefab;
     }
 
     public void SetValue(float newValue)
@@ -46,17 +50,27 @@ public class ExpScript : MonoBehaviour
 
         if (other.gameObject.CompareTag("Exp"))
         {
-            if ((other.transform.position.x > transform.position.x) ||
-                (other.transform.position.y > transform.position.y))
+            int thisIndex = gameControllerScript.GetIndex(gameControllerScript.exps, gameObject);
+            int otherIndex = gameControllerScript.GetIndex(gameControllerScript.exps, other.gameObject);
+
+            if ((thisIndex == -1) || (otherIndex == -1))
             {
-                GameObject newExp = Instantiate(expPrefab, transform.position, Quaternion.identity);
-                newExp.GetComponent<ExpScript>().SetValue(other.GetComponent<ExpScript>().value + value);
+                return;
+            }
+            
+            if (thisIndex > otherIndex)
+            {
+                float thisValue = value;
+                float otherValue = other.GetComponent<ExpScript>().value;
                 
                 gameControllerScript.RemoveFromList(gameControllerScript.exps, other.gameObject);
                 Destroy(other.gameObject);
                 
                 gameControllerScript.RemoveFromList(gameControllerScript.exps, gameObject);
                 Destroy(gameObject);
+                
+                GameObject newExp = Instantiate(_expPrefab, transform.position, Quaternion.identity);
+                newExp.GetComponent<ExpScript>().SetValue(thisValue + otherValue);
             }
         }
     }

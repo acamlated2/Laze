@@ -15,6 +15,11 @@ public class KnifeManagerScript : BaseWeaponManagerScript
 
     protected override void Attack()
     {
+        if (player == null)
+        {
+            return;
+        }
+        
         float angle = gameController.GetComponent<WeaponManagerScript>().angle;
         
         GameObject newKnife = Instantiate(prefab, player.transform.position, Quaternion.identity);

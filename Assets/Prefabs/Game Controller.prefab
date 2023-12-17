@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetables: []
+  expPrefab: {fileID: 8471062301703778376, guid: d75e421c4e847a9419d55fb6171c8fef,
+    type: 3}
   exps: []
   expToPlayerAttractDistance: 5
   expToExpAttractDistance: 3

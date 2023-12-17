@@ -20,6 +20,7 @@ public class GameControllerScript : MonoBehaviour
     private GameObject _canvas;
     
     // exp
+    public GameObject expPrefab;
     public List<GameObject> exps = new List<GameObject>();
     [SerializeField] [Min(0.1f)] private float expToPlayerAttractDistance = 5;
     [SerializeField] [Min(0.1f)] private float expToExpAttractDistance = 3;
@@ -84,6 +85,11 @@ public class GameControllerScript : MonoBehaviour
 
     private void AttractExp()
     {
+        if (_player == null)
+        {
+            return;
+        }
+        
         for (int i = 0; i < exps.Count; i++)
         {
             float distanceToPlayer = Vector2.Distance(exps[i].transform.position, _player.transform.position);
@@ -125,5 +131,18 @@ public class GameControllerScript : MonoBehaviour
                 list.RemoveAt(i);
             }
         }
+    }
+
+    public int GetIndex(List<GameObject> list, GameObject gameobject)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i] == gameobject)
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
 }

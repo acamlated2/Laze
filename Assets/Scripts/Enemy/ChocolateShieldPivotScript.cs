@@ -16,6 +16,11 @@ public class ChocolateShieldPivotScript : MonoBehaviour
 
     private void Update()
     {
+        if (_player == null)
+        {
+            return;
+        }
+        
         Vector2 direction = (_player.transform.position - transform.position).normalized;
         float angleToTarget = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
