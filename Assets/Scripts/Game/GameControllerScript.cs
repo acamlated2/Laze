@@ -25,6 +25,10 @@ public class GameControllerScript : MonoBehaviour
     [SerializeField] [Min(0.1f)] private float expToPlayerAttractDistance = 5;
     [SerializeField] [Min(0.1f)] private float expToExpAttractDistance = 3;
     
+    // enemies
+    public List<GameObject> enemies = new List<GameObject>();
+    public List<GameObject> chocolates = new List<GameObject>();
+    
     private void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");

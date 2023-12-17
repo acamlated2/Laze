@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647334c01037faa4897b1fae64252de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 20
+  handleAttack: 1
+  attackTime: 1
 --- !u!212 &3799954158262364385
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -279,13 +282,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc167d2b0c869034e9fe686cc375e14d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 50
   handleAttack: 1
   attackTime: 1
   expPrefab: {fileID: 8471062301703778376, guid: d75e421c4e847a9419d55fb6171c8fef,
     type: 3}
   damage: 10
   panicDistance: 5
+  haveShield: 1
 --- !u!4 &8350575505725210418 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
