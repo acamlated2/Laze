@@ -14,6 +14,7 @@ TagManager:
   - Towers
   - Exp
   - Shield
+  - MenuLockTarget
   layers:
   - Default
   - TransparentFX

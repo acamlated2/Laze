@@ -107,6 +107,8 @@ GameObject:
   - component: {fileID: 7537865353207642872}
   - component: {fileID: 5310004574897042588}
   - component: {fileID: 8356891338369778580}
+  - component: {fileID: 8545756185700337411}
+  - component: {fileID: 4197257842792120646}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: GameController
@@ -152,6 +154,8 @@ MonoBehaviour:
   exps: []
   expToPlayerAttractDistance: 5
   expToExpAttractDistance: 3
+  enemies: []
+  chocolates: []
 --- !u!114 &4031249698842193081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +212,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3922df2464982b4449a9b1a1d83982f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8545756185700337411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417097394962929523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e3c933ae1565114480a32848fe6d87f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4197257842792120646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417097394962929523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7f195bda104174084890b6286f4556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7912744516085204787
