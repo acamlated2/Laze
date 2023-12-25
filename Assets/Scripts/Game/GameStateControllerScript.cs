@@ -18,12 +18,27 @@ public class GameStateControllerScript : MonoBehaviour
     {
         _gameState = state;
 
-        GameEventControllerScript.current.SceneChange();
+        GameEventControllerScript.current.StateChange();
     }
 
     public GameState GetState()
     {
         return _gameState;
+    }
+
+    private void OnEnable()
+    {
+        GameEventControllerScript.current.OnGameStart += StartGame;
+    }
+
+    private void OnDisable()
+    {
+        GameEventControllerScript.current.OnGameStart -= StartGame;
+    }
+
+    private void StartGame()
+    {
+        ChangeState(GameState.Game);
     }
 
     private void Update()

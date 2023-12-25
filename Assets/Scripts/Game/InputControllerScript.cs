@@ -21,19 +21,47 @@ public class InputControllerScript : MonoBehaviour
     
     // game objects
     private GameObject _player;
+    private GameObject _canvas;
 
     private void Awake()
     {
         _playerInput = new PlayerInputAction();
-        
         _player = GameObject.FindGameObjectWithTag("Player");
+        _canvas = GameObject.FindGameObjectWithTag("Canvas");
+        
+        EnableMenuInput();
     }
     
     private void OnEnable()
     {
+        GameEventControllerScript.current.OnStateChange += ChangeInput;
+    }
+
+    private void OnDisable()
+    {
+        GameEventControllerScript.current.OnStateChange -= ChangeInput;
+    }
+
+    private void ChangeInput()
+    {
+        GameStateControllerScript.GameState state = GetComponent<GameStateControllerScript>().GetState();
+
+        if (state == GameStateControllerScript.GameState.Game)
+        {
+            EnableGameInput();
+            DisableMenuInput();
+        }
+        else
+        {
+            EnableMenuInput();
+            DisableGameInput();
+        }
+    }
+    
+    private void EnableGameInput()
+    {
         var playerScript = _player.GetComponent<PlayerController>();
-        
-        // gameplay
+
         _move = _playerInput.Gameplay.Move;
         _move.Enable();
         _move.performed += playerScript.Move;
@@ -51,29 +79,39 @@ public class InputControllerScript : MonoBehaviour
         _skill = _playerInput.Gameplay.Skill;
         _skill.Enable();
         _skill.performed += playerScript.Skill;
+    }
+
+    private void EnableMenuInput()
+    {
+        var menuManagerScript = _canvas.GetComponent<MenuManagerScript>();
         
-        // upgrading & menu
         _moveUpList = _playerInput.UpgradingMenu.MoveUpList;
         _moveUpList.Enable();
+        _moveUpList.performed += menuManagerScript.MoveUpList;
 
         _moveDownList = _playerInput.UpgradingMenu.MoveDownList;
         _moveDownList.Enable();
+        _moveDownList.performed += menuManagerScript.MoveDownList;
 
         _select = _playerInput.UpgradingMenu.Select;
         _select.Enable();
+        _select.performed += menuManagerScript.Select;
 
         _deselect = _playerInput.UpgradingMenu.Deselect;
         _deselect.Enable();
     }
-    
-    private void OnDisable()
+
+    private void DisableGameInput()
     {
         // gameplay
         _move.Disable();
         _aim.Disable();
         _interact.Disable();
         _skill.Disable();
-        
+    }
+
+    private void DisableMenuInput()
+    {
         // upgrading & menu
         _moveUpList.Disable();
         _moveDownList.Disable();

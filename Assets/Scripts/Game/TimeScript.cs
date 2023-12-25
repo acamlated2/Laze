@@ -8,9 +8,9 @@ using UnityEngine.Serialization;
 
 public class TimeScript : MonoBehaviour
 {
-    private TMP_Text _minuteText;
-    private TMP_Text _secondText;
-    private TMP_Text _dividerText;
+    public TMP_Text _minuteText;
+    public TMP_Text _secondText;
+    public TMP_Text _dividerText;
 
     private float _timerMax = 1;
     private float _timer = 1;
@@ -29,6 +29,26 @@ public class TimeScript : MonoBehaviour
 
     private void Update()
     {
+        if (GetComponent<GameStateControllerScript>().GetState() != GameStateControllerScript.GameState.Game)
+        {
+            return;
+        }
+
+        if (_minuteText == null)
+        {
+            _minuteText = FindObjectsOfType<TMP_Text>().FirstOrDefault(t => t.tag == "TimeMinutes");
+        }
+
+        if (_secondText == null)
+        {
+            _secondText = FindObjectsOfType<TMP_Text>().FirstOrDefault(t => t.tag == "TimeSeconds");
+        }
+
+        if (_dividerText == null)
+        {
+            _dividerText = FindObjectsOfType<TMP_Text>().FirstOrDefault(t => t.tag == "TimeDivider");
+        }
+        
         // time
         _timer -= 1 * Time.deltaTime;
 

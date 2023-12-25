@@ -45,6 +45,21 @@ public class GameControllerScript : MonoBehaviour
         _canvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 
+    private void OnEnable()
+    {
+        GameEventControllerScript.current.OnGameStart += StartGame;
+    }
+
+    private void OnDisable()
+    {
+        GameEventControllerScript.current.OnGameStart -= StartGame;
+    }
+
+    private void StartGame()
+    {
+        GetComponent<EnemySpawningScript>().enabled = true;
+    }
+
     private void Update()
     {
         AttractExp();

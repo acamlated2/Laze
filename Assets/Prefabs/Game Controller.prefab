@@ -168,6 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f5a255cde101c49bd5d2caac75f1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minuteText: {fileID: 0}
+  _secondText: {fileID: 0}
+  _dividerText: {fileID: 0}
   second: 0
   minute: 0
 --- !u!114 &7537865353207642872

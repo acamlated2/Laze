@@ -15,6 +15,7 @@ TagManager:
   - Exp
   - Shield
   - MenuLockTarget
+  - MenuOptionsParent
   layers:
   - Default
   - TransparentFX

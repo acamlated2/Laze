@@ -13,11 +13,20 @@ public class GameEventControllerScript : MonoBehaviour
     }
 
     public event Action OnStateChange;
-    public void SceneChange()
+    public void StateChange()
     {
         if (OnStateChange != null)
         {
             OnStateChange();
+        }
+    }
+
+    public event Action OnGameStart;
+    public void StartGame()
+    {
+        if (OnGameStart != null)
+        {
+            OnGameStart();
         }
     }
 }

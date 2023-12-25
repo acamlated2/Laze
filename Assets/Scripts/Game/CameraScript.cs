@@ -13,19 +13,26 @@ public class CameraScript : MonoBehaviour
 
     private GameObject _menuLockTarget;
     private GameObject _player;
+
+    private float _desiredSize;
     
     private void Awake()
     {
-        GameEventControllerScript.current.OnStateChange += ChangeTarget;
-        
         _gameController = GameObject.FindGameObjectWithTag("GameController");
         _player = GameObject.FindGameObjectWithTag("Player");
         _menuLockTarget = GameObject.FindGameObjectWithTag("MenuLockTarget");
 
-        _locktarget = _player;
+        _locktarget = _menuLockTarget;
+
+        _desiredSize = GetComponent<Camera>().orthographicSize;
     }
 
-    private void OnDestroy()
+    private void OnEnable()
+    {
+        GameEventControllerScript.current.OnStateChange += ChangeTarget;
+    }
+
+    private void OnDisable()
     {
         GameEventControllerScript.current.OnStateChange -= ChangeTarget;
     }
@@ -35,10 +42,12 @@ public class CameraScript : MonoBehaviour
         switch (_gameController.GetComponent<GameStateControllerScript>().GetState())
         {
             case GameStateControllerScript.GameState.Menu:
+                ChangeSize(7);
                 _locktarget = _menuLockTarget;
                 break;
             
             case GameStateControllerScript.GameState.Game:
+                ChangeSize(15);
                 _locktarget = _player;
                 break;
             
@@ -50,6 +59,7 @@ public class CameraScript : MonoBehaviour
     private void Update()
     {
         LockOnTarget();
+        ControlSize();
     }
 
     private void LockOnTarget()
@@ -63,5 +73,16 @@ public class CameraScript : MonoBehaviour
         desiredPos.z += _offset;
 
         transform.position = Vector3.Lerp(transform.position, desiredPos, 0.05f);
+    }
+
+    private void ControlSize()
+    {
+        GetComponent<Camera>().orthographicSize =
+            Mathf.Lerp(GetComponent<Camera>().orthographicSize, _desiredSize, 0.05f);
+    }
+
+    private void ChangeSize(float size)
+    {
+        _desiredSize = size;
     }
 }
