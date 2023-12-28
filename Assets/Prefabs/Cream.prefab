@@ -96,12 +96,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad5b0a4cff2f564a8b1d6a066fb4029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 30
   handleAttack: 1
   attackTime: 1
+  healthBarPrefab: {fileID: 7999045155516970418, guid: 8358ddb7a8f18db42b3729157a90e8f3,
+    type: 3}
+  type: 0
   expPrefab: {fileID: 8471062301703778376, guid: d75e421c4e847a9419d55fb6171c8fef,
     type: 3}
   damage: 10
   panicDistance: 5
   projectile: {fileID: 7253361214600921465, guid: 4b59a1b61633bf0469b7a0e30d304bb8,
     type: 3}
+  hidingRange: 20

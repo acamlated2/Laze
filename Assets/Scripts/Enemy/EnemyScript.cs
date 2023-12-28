@@ -71,6 +71,7 @@ public class EnemyScript : ObjectWithStatsScript
     public override void Damage(float damage)
     {
         health -= damage;
+        healthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
 
         if (health <= 0)
         {

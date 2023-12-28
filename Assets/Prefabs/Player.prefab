@@ -159,6 +159,8 @@ MonoBehaviour:
   health: 20
   handleAttack: 0
   attackTime: 1
+  healthBarPrefab: {fileID: 7999045155516970418, guid: 8358ddb7a8f18db42b3729157a90e8f3,
+    type: 3}
   speed: 10
 --- !u!114 &4051594880211241176
 MonoBehaviour:

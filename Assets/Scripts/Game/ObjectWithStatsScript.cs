@@ -6,7 +6,7 @@ using UnityEngine;
 public class ObjectWithStatsScript : MonoBehaviour
 {
     [Header("General Stats")]
-    [SerializeField] [Min(0.1f)] public float health = 20;
+    [SerializeField] [Min(0.1f)] public float health = 30;
 
     [SerializeField] protected bool handleAttack = true;
     protected bool shouldAttack;
@@ -15,11 +15,29 @@ public class ObjectWithStatsScript : MonoBehaviour
 
     protected GameObject gameController;
 
+    [SerializeField] private GameObject healthBarPrefab;
+    protected GameObject healthBar;
+    private bool _maxHealthSet;
+
     protected virtual void Awake()
     {
         attackTimer = attackTime;
         
         gameController = GameObject.FindGameObjectWithTag("GameController");
+        
+        // create health bar
+        healthBar = Instantiate(healthBarPrefab, transform.position, Quaternion.identity);
+        healthBar.GetComponent<HealthBarScript>().owner = transform.gameObject;
+    }
+
+    private void Start()
+    {
+        healthBar.GetComponent<HealthBarScript>().ChangeMaxHealth(health);
+    }
+
+    protected void OnDestroy()
+    {
+        Destroy(healthBar);
     }
 
     protected virtual void Update()
@@ -53,6 +71,8 @@ public class ObjectWithStatsScript : MonoBehaviour
     public virtual void Damage(float damage)
     {
         health -= damage;
+        
+        healthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
 
         if (health <= 0)
         {

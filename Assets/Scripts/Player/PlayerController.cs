@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : ObjectWithStatsScript
 {
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float speed = 10;
     
     private Vector2 _moveDir;
     private Vector2 _aimDir;

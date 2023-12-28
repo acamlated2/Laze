@@ -1523,8 +1523,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuOptionAmount: 3
   upgradeOptionAmount: 4
-  optionsParent: {fileID: 0}
-  _options: []
 --- !u!1 &8166953389768526291
 GameObject:
   m_ObjectHideFlags: 0

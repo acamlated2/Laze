@@ -4,6 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - healthBarPrefab: {fileID: 7999045155516970418, guid: 8358ddb7a8f18db42b3729157a90e8f3,
+      type: 3}
   - expPrefab: {fileID: 8471062301703778376, guid: d75e421c4e847a9419d55fb6171c8fef,
       type: 3}
   - projectile: {fileID: 7253361214600921465, guid: 4b59a1b61633bf0469b7a0e30d304bb8,
