@@ -12,16 +12,14 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] protected float damage = 10;
     
     protected GameObject player;
-    protected Vector3 playerSpawnPos;
 
     protected virtual void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    public void Initiate(float angle)
+    public virtual void InitiateAngle(float angle)
     {
-        Quaternion q = Quaternion.Euler(0, 0, angle - 45);
-        transform.rotation = q;
+        
     }
 }

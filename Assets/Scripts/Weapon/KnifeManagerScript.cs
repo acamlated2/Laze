@@ -23,6 +23,6 @@ public class KnifeManagerScript : BaseWeaponManagerScript
         float angle = gameController.GetComponent<WeaponManagerScript>().angle;
         
         GameObject newKnife = Instantiate(prefab, player.transform.position, Quaternion.identity);
-        newKnife.GetComponent<WeaponScript>().Initiate(angle);
+        newKnife.GetComponent<WeaponScript>().InitiateAngle(angle);
     }
 }

@@ -14,10 +14,15 @@ public class KnifeScript : WeaponScript
 
     private void Update()
     {
+        if (player == null)
+        {
+            return;
+        }
+        
         transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
         transform.Translate(transform.right * speed * Time.deltaTime, Space.World);
         
-        float distanceToPlayer = Vector2.Distance(transform.position, playerSpawnPos);
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         
         if (distanceToPlayer >= distanceToDelete)
         {
@@ -33,5 +38,11 @@ public class KnifeScript : WeaponScript
             
             other.gameObject.GetComponent<ObjectWithStatsScript>().Damage(damage);
         }
+    }
+
+    public override void InitiateAngle(float angle)
+    {
+        Quaternion q = Quaternion.Euler(0, 0, angle - 45);
+        transform.rotation = q;
     }
 }

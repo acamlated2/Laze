@@ -11,7 +11,7 @@ public class BaseWeaponManagerScript : MonoBehaviour
         IceStaff,
         WindStaff,
         Boulder,
-        BaseballBat
+        Sword
     };
     
     [Header("Base Stats")]
