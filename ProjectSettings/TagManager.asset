@@ -16,6 +16,8 @@ TagManager:
   - Shield
   - MenuLockTarget
   - MenuOptionsParent
+  - UpgradeLockTarget
+  - UpgradeOptionsParent
   layers:
   - Default
   - TransparentFX

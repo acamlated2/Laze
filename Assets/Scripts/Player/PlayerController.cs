@@ -17,6 +17,9 @@ public class PlayerController : ObjectWithStatsScript
     private Animator _animator;
     
     private GameObject _canvas;
+
+    public bool usingMouse = true;
+    private Camera _camera;
     
     public void Move(InputAction.CallbackContext dir)
     {
@@ -72,11 +75,22 @@ public class PlayerController : ObjectWithStatsScript
         
         _animator = transform.GetChild(0).GetComponent<Animator>();
         _canvas = GameObject.FindGameObjectWithTag("Canvas");
+
+        _camera = Camera.main;
     }
 
     protected override void Update()
     {
         HandleAnimation();
+
+        if (usingMouse)
+        {
+            Vector3 mousePos = Input.mousePosition;
+            Vector3 dirToMouse = mousePos - _camera.WorldToScreenPoint(transform.position);
+            dirToMouse.Normalize();
+
+            _aimDir = dirToMouse;
+        }
         
         gameController.GetComponent<WeaponManagerScript>().Aim(_aimDir);
     }

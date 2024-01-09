@@ -21,6 +21,13 @@ public class GameStateControllerScript : MonoBehaviour
         GameEventControllerScript.current.StateChange();
     }
 
+    public void ChangeState(GameState state, GameObject target)
+    {
+        _gameState = state;
+
+        GameEventControllerScript.current.StateChange(target);
+    }
+
     public GameState GetState()
     {
         return _gameState;
@@ -55,7 +62,9 @@ public class GameStateControllerScript : MonoBehaviour
 
         if (Input.GetKeyDown("3"))
         {
-            ChangeState(GameState.Upgrade);
+            GameObject baseObject = GameObject.FindGameObjectWithTag("Base");
+            
+            ChangeState(GameState.Upgrade, baseObject);
         }
     }
 }

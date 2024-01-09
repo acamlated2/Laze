@@ -13,6 +13,7 @@ public class CameraScript : MonoBehaviour
 
     private GameObject _menuLockTarget;
     private GameObject _player;
+    private GameObject _upgradeLockTarget;
 
     private float _desiredSize;
     
@@ -21,6 +22,7 @@ public class CameraScript : MonoBehaviour
         _gameController = GameObject.FindGameObjectWithTag("GameController");
         _player = GameObject.FindGameObjectWithTag("Player");
         _menuLockTarget = GameObject.FindGameObjectWithTag("MenuLockTarget");
+        _upgradeLockTarget = GameObject.FindGameObjectWithTag("UpgradeLockTarget");
 
         _locktarget = _menuLockTarget;
 
@@ -52,8 +54,20 @@ public class CameraScript : MonoBehaviour
                 break;
             
             case GameStateControllerScript.GameState.Upgrade:
+                ChangeSize(7);
+                _locktarget = _upgradeLockTarget;
                 break;
         }
+    }
+
+    public void ChangeUpgradeTarget(GameObject target)
+    {
+        if (_gameController.GetComponent<GameStateControllerScript>().GetState() != GameStateControllerScript.GameState.Upgrade)
+        {
+            return;
+        }
+        
+        _locktarget.transform.position = target.transform.position + new Vector3(6, -2, 0);
     }
 
     private void Update()
