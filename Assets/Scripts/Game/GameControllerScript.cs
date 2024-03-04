@@ -14,10 +14,12 @@ public class GameControllerScript : MonoBehaviour
     public List<GameObject> targetables = new List<GameObject>();
     
     // player
-    private float _playerExp = 100;
+    private float _exp;
+    private int _level = 1;
+    [SerializeField] private float expToLevelUp = 100;
     
     // canvas
-    private GameObject _canvas;
+    private GameObject _expBar;
     
     // exp
     public GameObject expPrefab;
@@ -42,7 +44,13 @@ public class GameControllerScript : MonoBehaviour
             targetables.Add(_towers[i]);
         }
         
-        _canvas = GameObject.FindGameObjectWithTag("Canvas");
+        _expBar = GameObject.FindGameObjectWithTag("ExpBarUI");
+        _expBar.GetComponent<UIBarScript>().customText = true;
+    }
+
+    private void Start()
+    {
+        _expBar.GetComponent<UIBarScript>().ChangeText(_level.ToString());
     }
 
     private void OnEnable()
@@ -95,11 +103,23 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
-    public void AddExp(float exp)
+    public void AddExp(float addedExp)
     {
-        _playerExp += exp;
+        _exp += addedExp;
+
+        if (_exp >= expToLevelUp)
+        {
+            float extraExp = _exp - expToLevelUp;
+            _exp = extraExp;
+
+            _level += 1;
+
+            expToLevelUp += expToLevelUp * 20 / 100;
+            
+            _expBar.GetComponent<UIBarScript>().ChangeText(_level.ToString());
+        }
         
-        _canvas.GetComponent<StatsScript>().ChangeExp(_playerExp);
+        _expBar.GetComponent<UIBarScript>().ChangeValue(_exp);
     }
 
     private void AttractExp()
@@ -140,15 +160,12 @@ public class GameControllerScript : MonoBehaviour
     {
         list.Add(gameobject);
     }
-
+    
     public void RemoveFromList(List<GameObject> list, GameObject gameobject)
     {
-        for (int i = 0; i < list.Count; i++)
+        if (list.Contains(gameobject))
         {
-            if (list[i] == gameobject)
-            {
-                list.RemoveAt(i);
-            }
+            list.Remove(gameobject);
         }
     }
 

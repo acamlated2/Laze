@@ -30,7 +30,7 @@ public class ObjectWithStatsScript : MonoBehaviour
         healthBar.GetComponent<HealthBarScript>().owner = transform.gameObject;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         healthBar.GetComponent<HealthBarScript>().ChangeMaxHealth(health);
     }

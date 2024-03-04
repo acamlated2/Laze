@@ -75,9 +75,6 @@ public class EnemyScript : ObjectWithStatsScript
 
         if (health <= 0)
         {
-            Destroy(gameObject);
-            SpawnExp();
-            
             var gameControllerScript = gameController.GetComponent<GameControllerScript>();
             gameControllerScript.RemoveFromList(gameControllerScript.enemies, gameObject);
 
@@ -85,6 +82,10 @@ public class EnemyScript : ObjectWithStatsScript
             {
                 gameControllerScript.RemoveFromList(gameControllerScript.chocolates, gameObject);
             }
+            
+            SpawnExp();
+            
+            Destroy(gameObject);
         }
     }
 
@@ -96,8 +97,7 @@ public class EnemyScript : ObjectWithStatsScript
 
     private void SpawnExp()
     {
-        GameObject newExp;
-        newExp = Instantiate(expPrefab, transform.position, Quaternion.identity);
+        GameObject newExp = Instantiate(expPrefab, transform.position, Quaternion.identity);
         var newExpScript = newExp.GetComponent<ExpScript>();
         
         switch (type)

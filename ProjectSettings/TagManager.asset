@@ -18,6 +18,8 @@ TagManager:
   - MenuOptionsParent
   - UpgradeLockTarget
   - UpgradeOptionsParent
+  - ExpBarUI
+  - HpBarUI
   layers:
   - Default
   - TransparentFX

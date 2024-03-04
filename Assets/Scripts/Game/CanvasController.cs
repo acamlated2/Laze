@@ -18,7 +18,14 @@ public class CanvasController : MonoBehaviour
         _activateInGame = transform.GetChild(1).transform.gameObject;
         _activateInUpgrade = transform.GetChild(2).transform.gameObject;
         
-        EnableMenuObjects();
+        ActivateObjects(_activateInMenu);
+        ActivateObjects(_activateInGame);
+        ActivateObjects(_activateInUpgrade);
+    }
+
+    private void Start()
+    {
+        ChangeActive();
     }
 
     private void OnEnable()

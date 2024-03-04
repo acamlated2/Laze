@@ -16,7 +16,7 @@ public class PlayerController : ObjectWithStatsScript
 
     private Animator _animator;
     
-    private GameObject _canvas;
+    public GameObject _hpBar;
 
     public bool usingMouse = true;
     private Camera _camera;
@@ -74,8 +74,10 @@ public class PlayerController : ObjectWithStatsScript
         handleAttack = false;
         
         _animator = transform.GetChild(0).GetComponent<Animator>();
-        _canvas = GameObject.FindGameObjectWithTag("Canvas");
 
+        _hpBar = GameObject.FindGameObjectWithTag("HpBarUI");
+        _hpBar.GetComponent<UIBarScript>().ChangeValue(health);
+        
         _camera = Camera.main;
     }
 
@@ -129,6 +131,6 @@ public class PlayerController : ObjectWithStatsScript
     public override void Damage(float damage)
     {
         base.Damage(damage);
-        _canvas.GetComponent<StatsScript>().ChangeHp(health);
+        _hpBar.GetComponent<UIBarScript>().ChangeValue(health);
     }
 }
