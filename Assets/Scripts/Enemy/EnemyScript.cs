@@ -21,12 +21,12 @@ public class EnemyScript : ObjectWithStatsScript
 
     [SerializeField] protected float damage = 10;
 
-    protected GameObject target;
+    public GameObject target;
     protected GameObject player;
 
-    [SerializeField] protected float panicDistance = 5;
+    public float panicDistance = 5;
     
-    protected float playerDistance;
+    public float playerDistance;
 
     protected override void Awake()
     {
@@ -57,7 +57,7 @@ public class EnemyScript : ObjectWithStatsScript
             playerDistance = Vector3.Distance(transform.position, player.transform.position);
         }
     }
-
+    
     protected virtual void FixedUpdate()
     {
         if (player == null)
@@ -65,7 +65,7 @@ public class EnemyScript : ObjectWithStatsScript
             return;
         }
         
-        agent.SetDestination(target.transform.position);
+        //agent.SetDestination(target.transform.position);
     }
 
     public override void Damage(float damage)

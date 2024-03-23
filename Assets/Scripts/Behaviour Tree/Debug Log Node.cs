@@ -16,7 +16,7 @@ public class DebugLogNode : ActionNode
         Debug.Log($"OnStop{message}");
     }
 
-    protected override State OnUpdate()
+    protected override State OnUpdate(Transform ownerTransform)
     {
         Debug.Log($"OnUpdate{message}");
         return State.Success;

@@ -6,14 +6,21 @@ using UnityEngine;
 public class BehaviourTreeRunner : MonoBehaviour
 {
     public BehaviourTree tree;
+    private GameObject _player;
 
-    private void Start()
+    private void Awake()
     {
+        _player = GameObject.FindGameObjectWithTag("Player");
         tree = tree.Clone();
     }
 
     private void Update()
     {
-        tree.Update();
+        if (!_player)
+        {
+            return;
+        }
+        
+        tree.UpdateTree(transform);
     }
 }

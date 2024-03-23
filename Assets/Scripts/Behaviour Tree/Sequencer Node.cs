@@ -16,10 +16,10 @@ public class SequencerNode : CompositeNode
         
     }
 
-    protected override State OnUpdate()
+    protected override State OnUpdate(Transform ownerTransform)
     {
         var child = children[current];
-        switch (child.Update())
+        switch (child.UpdateNode(ownerTransform))
         {
             case State.Running:
                 return State.Running;

@@ -16,9 +16,9 @@ public class RootNode : Node
         
     }
 
-    protected override State OnUpdate()
+    protected override State OnUpdate(Transform ownerTransform)
     {
-        return child.Update();
+        return child.UpdateNode(ownerTransform);
     }
 
     public override Node Clone()

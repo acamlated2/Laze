@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,12 +10,12 @@ public class BehaviourTree : ScriptableObject
     public Node rootNode;
     public Node.State treeState = Node.State.Running;
     public List<Node> Nodes = new List<Node>();
-
-    public Node.State Update()
+    
+    public Node.State UpdateTree(Transform ownerTransform)
     {
         if (rootNode.state == Node.State.Running)
         {
-            treeState = rootNode.Update();
+            treeState = rootNode.UpdateNode(ownerTransform);
         }
         return treeState;
     }

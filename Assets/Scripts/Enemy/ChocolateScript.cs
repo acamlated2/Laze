@@ -24,14 +24,14 @@ public class ChocolateScript : EnemyScript
             return;
         }
         
-        if (haveShield)
-        {
-            HandleShieldedMovements();
-        }
-        else
-        {
-            agent.SetDestination(player.transform.position);
-        }
+        // if (haveShield)
+        // {
+        //     HandleShieldedMovements();
+        // }
+        // else
+        // {
+        //     agent.SetDestination(player.transform.position);
+        // }
     }
 
     private void HandleShieldedMovements()

@@ -14,9 +14,9 @@ public class RepeatNode : DecoratorNode
         
     }
 
-    protected override State OnUpdate()
+    protected override State OnUpdate(Transform ownerTransform)
     {
-        child.Update();
+        child.UpdateNode(ownerTransform);
         return State.Running;
     }
 }

@@ -10,8 +10,8 @@ public class CreamScript : EnemyScript
     private bool _relocating;
     private Vector3 _relocatingPosition;
 
-    [SerializeField] private float hidingRange = 20;
-    private GameObject _closestChocolate;
+    public float hidingRange = 20;
+    public GameObject closestChocolate;
     
     protected override void Awake()
     {
@@ -25,7 +25,7 @@ public class CreamScript : EnemyScript
     {
         base.Update();
 
-        _closestChocolate = GetClosestChocolate();
+        closestChocolate = GetClosestChocolate();
     }
 
     protected override void FixedUpdate()
@@ -35,17 +35,17 @@ public class CreamScript : EnemyScript
             return;
         }
 
-        if (_closestChocolate != null)
+        if (closestChocolate != null)
         {
-            HandleHiding();
+            //HandleHiding();
         }
         else if (playerDistance <= panicDistance)
         {
-            HandleRunning();
+            //HandleRunning();
         }
         else
         {
-            HandleNormal();
+            //HandleNormal();
         }
     }
 
@@ -104,16 +104,16 @@ public class CreamScript : EnemyScript
 
     private void HandleHiding()
     {
-        Vector3 desiredPosition = _closestChocolate.transform.position - (player.transform.position - 
-                                                               transform.position).normalized * panicDistance;
-        
-        agent.SetDestination(desiredPosition);
+        // Vector3 desiredPosition = _closestChocolate.transform.position - (player.transform.position - 
+        //                                                        transform.position).normalized * panicDistance;
+        //
+        // agent.SetDestination(desiredPosition);
     }
 
     private GameObject GetClosestChocolate()
     {
         var gameControllerScript = gameController.GetComponent<GameControllerScript>();
-
+    
         if (!gameControllerScript.chocolates.Any())
         {
             return null;
@@ -121,7 +121,7 @@ public class CreamScript : EnemyScript
         
         GameObject closestObject = null;
         float closestDistance = float.MaxValue;
-
+    
         for (int i = 0; i < gameControllerScript.chocolates.Count; i++)
         {
             if (!gameControllerScript.chocolates[i].GetComponent<ChocolateScript>().haveShield)
@@ -130,7 +130,7 @@ public class CreamScript : EnemyScript
             }
             
             float distance = Vector2.Distance(transform.position, gameControllerScript.chocolates[i].transform.position);
-
+    
             if (distance > hidingRange)
             {
                 continue;
@@ -142,7 +142,7 @@ public class CreamScript : EnemyScript
                 closestObject = gameControllerScript.chocolates[i];
             }
         }
-
+    
         return closestObject;
     }
 }

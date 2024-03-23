@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class Node : ScriptableObject
 {
@@ -10,21 +12,36 @@ public abstract class Node : ScriptableObject
         Failure, 
         Success
     }
+    
+    public enum AIBehaviour
+    {
+        GoToPlayer, 
+        GoToLocation
+    }
 
     [HideInInspector] public State state = State.Running;
     [HideInInspector] public bool started = false;
     [HideInInspector] public string guid;
     [HideInInspector] public Vector2 position;
+    
+    
+    // variables used in enemy AI
+    protected GameObject Player;
+    protected GameObject GameController;
+    protected NavMeshAgent Agent;
 
-    public State Update()
+    public State UpdateNode(Transform ownerTransform)
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        GameController = GameObject.FindGameObjectWithTag("GameController");
+        
         if (!started)
         {
             OnStart();
             started = true;
         }
 
-        state = OnUpdate();
+        state = OnUpdate(ownerTransform);
 
         if (state == State.Failure || state == State.Success)
         {
@@ -42,5 +59,9 @@ public abstract class Node : ScriptableObject
 
     protected abstract void OnStart();
     protected abstract void OnStop();
-    protected abstract State OnUpdate();
+
+    protected virtual State OnUpdate(Transform ownerTransform)
+    {
+        return State.Success;
+    }
 }

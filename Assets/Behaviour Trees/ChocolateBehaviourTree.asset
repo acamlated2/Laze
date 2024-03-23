@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5752177541699968945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127296c0f20c423438f871b94541c9cb, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 3f52e38e523f6cc4db5c53e454eaa3fa
+  position: {x: -69.543945, y: 158.32}
+  child: {fileID: -4172949328685165015}
+--- !u!114 &-4172949328685165015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 245d3af406282d5438a564b266621ac2, type: 3}
+  m_Name: RepeatNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: ce2774b3b9bad77478d23bf8e78b267e
+  position: {x: 64.336, y: 158.39996}
+  child: {fileID: 3419902201019610834}
+--- !u!114 &-2708220029355573842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c105d5eefae8945408312c2548b7578a, type: 3}
+  m_Name: SetDestinationNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: dd394e899bd796e49955de337ba82a73
+  position: {x: 466.56, y: 166.4}
+  target: {fileID: 0}
+  distance: 5
+--- !u!114 &-316161042306485098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c105d5eefae8945408312c2548b7578a, type: 3}
+  m_Name: SetDestinationNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 9ea9cd3d2c25f8a4abd30834a6755de9
+  position: {x: 466.40002, y: 274.088}
+  target: {fileID: 0}
+  distance: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3554d17803ae7cc43924edec0620a320, type: 3}
+  m_Name: ChocolateBehaviourTree
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -5752177541699968945}
+  treeState: 0
+  Nodes:
+  - {fileID: -5752177541699968945}
+  - {fileID: 3419902201019610834}
+  - {fileID: 5797338710338202881}
+  - {fileID: -4172949328685165015}
+  - {fileID: -2708220029355573842}
+  - {fileID: -316161042306485098}
+--- !u!114 &3419902201019610834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b1dc70ba609ce4f8ce4259125ca3ac, type: 3}
+  m_Name: SelectorNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 5a9b30e0a3021ad4e9f49e0301b0aa20
+  position: {x: 272.58496, y: 166.16171}
+  children:
+  - {fileID: 5797338710338202881}
+  - {fileID: -2708220029355573842}
+  - {fileID: -316161042306485098}
+  check: {fileID: 5797338710338202881}
+  success: {fileID: -2708220029355573842}
+  failure: {fileID: -316161042306485098}
+--- !u!114 &5797338710338202881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f33787e826e9214dbe3f1d82b85980a, type: 3}
+  m_Name: CheckShieldNode
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 05b48afc9773618438b1e0a9b4d02eef
+  position: {x: 373.38498, y: 39.761703}

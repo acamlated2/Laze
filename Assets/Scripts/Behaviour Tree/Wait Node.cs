@@ -17,7 +17,7 @@ public class WaitNode : ActionNode
         
     }
 
-    protected override State OnUpdate()
+    protected override State OnUpdate(Transform ownerTransform)
     {
         if (Time.time - startTime > duration)
         {

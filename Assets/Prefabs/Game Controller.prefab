@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetables: []
+  expToLevelUp: 100
   expPrefab: {fileID: 8471062301703778376, guid: d75e421c4e847a9419d55fb6171c8fef,
     type: 3}
   exps: []
@@ -180,7 +181,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7417097394962929523}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 992030938881270429f19a35bcd3ae62, type: 3}
   m_Name: 
@@ -285,6 +286,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd1caf3d2c402b4f9e2b40cef204686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlocked: 0
+  attackDelay: 1
+  canBurst: 0
+  burstAmount: 5
+  burstDelay: 0.1
+  prefab: {fileID: 0}
 --- !u!1 &8252953154693059654
 GameObject:
   m_ObjectHideFlags: 0
