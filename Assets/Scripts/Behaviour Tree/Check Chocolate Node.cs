@@ -19,7 +19,6 @@ public class CheckChocolateNode : ActionNode
     {
         if (ownerTransform.GetComponent<CreamScript>().closestChocolate)
         {
-            Debug.Log("chocolate found");
             return State.Success;
         }
         else

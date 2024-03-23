@@ -32,12 +32,6 @@ public class GoToChocolateNode : ActionNode
         
         GameObject closestChocolate = ownerTransform.GetComponent<CreamScript>().closestChocolate;
 
-        if (!closestChocolate)
-        {
-            Debug.Log("chocolate not found");
-            return State.Success;
-        }
-
         Vector3 desiredPosition = closestChocolate.transform.position - (Player.transform.position -
                                                                          ownerTransform.position).normalized *
             panicDistance;

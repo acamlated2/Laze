@@ -76,11 +76,11 @@ public class EnemyScript : ObjectWithStatsScript
         if (health <= 0)
         {
             var gameControllerScript = gameController.GetComponent<GameControllerScript>();
-            gameControllerScript.RemoveFromList(gameControllerScript.enemies, gameObject);
-
+            gameControllerScript.enemies.Remove(gameObject);
+            
             if (type == Type.Chocolate)
             {
-                gameControllerScript.RemoveFromList(gameControllerScript.chocolates, gameObject);
+                gameControllerScript.chocolates.Remove(gameObject);
             }
             
             SpawnExp();

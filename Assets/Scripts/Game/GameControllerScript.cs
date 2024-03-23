@@ -61,11 +61,23 @@ public class GameControllerScript : MonoBehaviour
     private void OnDisable()
     {
         GameEventControllerScript.current.OnGameStart -= StartGame;
+        targetables.Clear();
+        exps.Clear();
+        enemies.Clear();
+        chocolates.Clear();
     }
 
     private void StartGame()
     {
         GetComponent<EnemySpawningScript>().enabled = true;
+    }
+
+    private void OnApplicationQuit()
+    {
+        targetables.Clear();
+        exps.Clear();
+        enemies.Clear();
+        chocolates.Clear();
     }
 
     private void Update()
@@ -94,13 +106,18 @@ public class GameControllerScript : MonoBehaviour
 
     public void RemoveTarget(GameObject target)
     {
+        List<GameObject> tempList = new List<GameObject>();
         for (int i = 0; i < targetables.Count; i++)
         {
             if (targetables[i] == target)
             {
-                targetables.RemoveAt(i);
+                continue;
             }
+            
+            tempList.Add(targetables[i].gameObject);
         }
+
+        targetables = tempList;
     }
 
     public void AddExp(float addedExp)
@@ -163,10 +180,19 @@ public class GameControllerScript : MonoBehaviour
     
     public void RemoveFromList(List<GameObject> list, GameObject gameobject)
     {
-        if (list.Contains(gameobject))
+        List<GameObject> tempList = new List<GameObject>();
+        for (int i = 0; i < list.Count; i++)
         {
-            list.Remove(gameobject);
+            if (list[i] == gameobject)
+            {
+                continue;
+            }
+            
+            tempList.Add(list[i].gameObject);
         }
+
+        list.Clear();
+        list = tempList;
     }
 
     public int GetIndex(List<GameObject> list, GameObject gameobject)

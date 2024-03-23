@@ -42,7 +42,7 @@ public class ExpScript : MonoBehaviour
         
         if (other.gameObject.CompareTag("Player"))
         {
-            gameControllerScript.RemoveFromList(gameControllerScript.exps, gameObject);
+            gameControllerScript.exps.Remove(gameObject);
             
             gameControllerScript.AddExp(value);
             
@@ -64,9 +64,9 @@ public class ExpScript : MonoBehaviour
                 float thisValue = value;
                 float otherValue = other.GetComponent<ExpScript>().value;
                 
-                gameControllerScript.RemoveFromList(gameControllerScript.exps, other.gameObject);
+                gameControllerScript.exps.Remove(other.gameObject);
                 
-                gameControllerScript.RemoveFromList(gameControllerScript.exps, gameObject);
+                gameControllerScript.exps.Remove(gameObject);
                 
                 GameObject newExp = Instantiate(_expPrefab, transform.position, Quaternion.identity);
                 newExp.GetComponent<ExpScript>().SetValue(thisValue + otherValue);
