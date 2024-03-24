@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6458224438802020040
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 411920476650477368, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 590b73e132435194da7d40dc8a3816f0,
+        type: 3}
+    - target: {fileID: 564761238289282057, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: m_Name
+      value: Grape Juice
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6759263830251951920, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      propertyPath: tree
+      value: 
+      objectReference: {fileID: 11400000, guid: d1d694564b03c02428045b0c840a52fb,
+        type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 564761238289282057, guid: 4ee1726a73f3421448031972a09e5e60,
+        type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1051864113821802709}
+  m_SourcePrefab: {fileID: 100100000, guid: 4ee1726a73f3421448031972a09e5e60, type: 3}
+--- !u!1 &6806724310672999105 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 564761238289282057, guid: 4ee1726a73f3421448031972a09e5e60,
+    type: 3}
+  m_PrefabInstance: {fileID: 6458224438802020040}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1051864113821802709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806724310672999105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b475a0fdd43659f4dbf8a6bd85ba8377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 30
+  handleAttack: 1
+  attackTime: 1
+  healthBarPrefab: {fileID: 7999045155516970418, guid: 8358ddb7a8f18db42b3729157a90e8f3,
+    type: 3}
+  type: 0
+  expPrefab: {fileID: 8471062301703778376, guid: d75e421c4e847a9419d55fb6171c8fef,
+    type: 3}
+  damage: 10
+  target: {fileID: 0}
+  panicDistance: 5
+  playerDistance: 0
+  projectile: {fileID: 3327019148415885072, guid: 680c626cce14b3e47995843e34015953,
+    type: 3}
+  bulletCount: 10
+  outOfBullets: 0

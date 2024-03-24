@@ -41,4 +41,10 @@ public class ChocolateScript : EnemyScript
         
         agent.SetDestination(desiredPosition);
     }
+
+    protected override void Die()
+    {
+        base.Die();
+        gameController.GetComponent<GameControllerScript>().chocolates.Remove(gameObject);
+    }
 }

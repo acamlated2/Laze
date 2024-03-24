@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8f6da97bc631c46be399ccd27f0b6f, type: 3}
   m_Name: CheckChocolateNode
   m_EditorClassIdentifier: 
-  state: 1
+  state: 2
   started: 0
   guid: da2a3546f31cc6544a86a598878c9c06
-  position: {x: 440.00003, y: 44.850006}
+  position: {x: 440.00006, y: 139.99995}
 --- !u!114 &-7972754903068505234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   state: 1
   started: 0
   guid: 94ef252f75fa3ff47bb3dd3c4ce01386
-  position: {x: 658.4, y: 304.447}
+  position: {x: 616.8001, y: 436.8001}
 --- !u!114 &-4637584365095507624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: e4725b6912479954d90800a3fd987361
-  position: {x: 720, y: 563.4309}
+  position: {x: 678.40015, y: 695.2002}
   target: {fileID: 0}
   distance: 10
 --- !u!114 &-2765691135116469827
@@ -82,7 +82,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: 110fd3bfa49154b40b25c58bb70251ee
-  position: {x: 522.4, y: 381.24698}
+  position: {x: 491.20013, y: 436.80005}
   children:
   - {fileID: -5041372190254727855}
   - {fileID: -1883026359320436223}
@@ -105,7 +105,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: 46c108a147ef7e04a9103af52b63cb87
-  position: {x: 720.081, y: 419.99997}
+  position: {x: 678.40015, y: 552.0001}
 --- !u!114 &-204564370148165177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: 56e147d424181f54d81aa4867e661fd6
-  position: {x: 490.696, y: 164.88002}
+  position: {x: 491.20013, y: 304.80005}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

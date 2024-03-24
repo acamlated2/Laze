@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c105d5eefae8945408312c2548b7578a, type: 3}
   m_Name: SetDestinationNode
   m_EditorClassIdentifier: 
-  state: 0
-  started: 0
+  state: 2
+  started: 1
   guid: dd394e899bd796e49955de337ba82a73
   position: {x: 466.56, y: 166.4}
   target: {fileID: 0}
@@ -64,8 +64,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c105d5eefae8945408312c2548b7578a, type: 3}
   m_Name: SetDestinationNode
   m_EditorClassIdentifier: 
-  state: 0
-  started: 0
+  state: 2
+  started: 1
   guid: 9ea9cd3d2c25f8a4abd30834a6755de9
   position: {x: 466.40002, y: 274.088}
   target: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 5a9b30e0a3021ad4e9f49e0301b0aa20
-  position: {x: 272.58496, y: 166.16171}
+  position: {x: 248.00009, y: 158.40001}
   children:
   - {fileID: 5797338710338202881}
   - {fileID: -2708220029355573842}

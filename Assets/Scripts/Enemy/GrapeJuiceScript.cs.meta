@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b475a0fdd43659f4dbf8a6bd85ba8377
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - healthBarPrefab: {fileID: 7999045155516970418, guid: 8358ddb7a8f18db42b3729157a90e8f3,
+      type: 3}
+  - expPrefab: {fileID: 8471062301703778376, guid: d75e421c4e847a9419d55fb6171c8fef,
+      type: 3}
+  - target: {instanceID: 0}
+  - projectile: {fileID: 3327019148415885072, guid: 680c626cce14b3e47995843e34015953,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

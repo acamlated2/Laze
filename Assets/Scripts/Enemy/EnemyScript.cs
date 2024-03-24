@@ -10,7 +10,8 @@ public class EnemyScript : ObjectWithStatsScript
     {
         Sushi, 
         Cream, 
-        Chocolate
+        Chocolate, 
+        GrapeJuice
     }
 
     public Type type = Type.Sushi;
@@ -75,17 +76,7 @@ public class EnemyScript : ObjectWithStatsScript
 
         if (health <= 0)
         {
-            var gameControllerScript = gameController.GetComponent<GameControllerScript>();
-            gameControllerScript.enemies.Remove(gameObject);
-            
-            if (type == Type.Chocolate)
-            {
-                gameControllerScript.chocolates.Remove(gameObject);
-            }
-            
-            SpawnExp();
-            
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -95,7 +86,7 @@ public class EnemyScript : ObjectWithStatsScript
         target.GetComponent<ObjectWithStatsScript>().Damage(damage);
     }
 
-    private void SpawnExp()
+    protected void SpawnExp()
     {
         GameObject newExp = Instantiate(expPrefab, transform.position, Quaternion.identity);
         var newExpScript = newExp.GetComponent<ExpScript>();
@@ -106,5 +97,15 @@ public class EnemyScript : ObjectWithStatsScript
                 newExpScript.SetValue(5);
                 break;
         }
+    }
+
+    protected virtual void Die()
+    {
+        var gameControllerScript = gameController.GetComponent<GameControllerScript>();
+        gameControllerScript.enemies.Remove(gameObject);
+            
+        SpawnExp();
+            
+        Destroy(gameObject);
     }
 }

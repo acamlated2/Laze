@@ -190,6 +190,7 @@ MonoBehaviour:
   - {fileID: 8148800682401492943, guid: 2fe833332b16fc9419afa36e8e016088, type: 3}
   - {fileID: 410929293572539565, guid: 8e7b162808bf285478776a37d2107387, type: 3}
   - {fileID: 3376928951605092366, guid: 2215d230ae204ab46b445c4015708413, type: 3}
+  - {fileID: 6806724310672999105, guid: 762e8bd2f4e3fcb4e91ba8db8d4eb6d0, type: 3}
   spawnMinDistance: 20
   spawnMaxDistance: 30
   timerMax: 1
