@@ -6,7 +6,7 @@ using UnityEngine;
 public class GrapeJuiceScript : EnemyScript
 {
     [SerializeField] private GameObject projectile;
-    [SerializeField] private int bulletCount = 10;
+    [SerializeField] private int bulletCount = 3;
     public bool outOfBullets;
 
     protected override void Awake()

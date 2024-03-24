@@ -116,5 +116,5 @@ MonoBehaviour:
   playerDistance: 0
   projectile: {fileID: 3327019148415885072, guid: 680c626cce14b3e47995843e34015953,
     type: 3}
-  bulletCount: 10
+  bulletCount: 3
   outOfBullets: 0
