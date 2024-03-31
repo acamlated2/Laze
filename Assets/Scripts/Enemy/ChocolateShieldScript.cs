@@ -20,7 +20,7 @@ public class ChocolateShieldScript : ObjectWithStatsScript
     public override void Damage(float damage)
     {
         health -= damage;
-        healthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
+        HealthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
 
         if (health <= 0)
         {

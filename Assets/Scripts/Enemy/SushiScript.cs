@@ -14,7 +14,7 @@ public class SushiScript : EnemyScript
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            shouldAttack = true;
+            ShouldAttack = true;
         }
     }
 
@@ -22,9 +22,9 @@ public class SushiScript : EnemyScript
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            shouldAttack = false;
+            ShouldAttack = false;
 
-            attackTimer = 0;
+            AttackTimer = 0;
         }
     }
 }

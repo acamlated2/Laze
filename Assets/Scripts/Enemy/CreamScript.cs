@@ -18,7 +18,7 @@ public class CreamScript : EnemyScript
         base.Awake();
         type = Type.Cream;
 
-        shouldAttack = true;
+        ShouldAttack = true;
     }
 
     protected override void Update()
@@ -30,7 +30,7 @@ public class CreamScript : EnemyScript
 
     protected override void FixedUpdate()
     {
-        if (player == null)
+        if (Player == null)
         {
             return;
         }
@@ -69,7 +69,7 @@ public class CreamScript : EnemyScript
             return;
         }
         
-        Vector3 runAwayPosition = player.transform.position - (player.transform.position - 
+        Vector3 runAwayPosition = Player.transform.position - (Player.transform.position - 
                                                                transform.position).normalized * (panicDistance * 2);
 
         Vector3 raycastDirection = -transform.forward;
@@ -81,7 +81,7 @@ public class CreamScript : EnemyScript
 
             if (distance <= 10)
             {
-                runAwayPosition = transform.position + (player.transform.position - transform.position).normalized *
+                runAwayPosition = transform.position + (Player.transform.position - transform.position).normalized *
                     (panicDistance + 5);
 
                 _relocating = true;
@@ -112,7 +112,7 @@ public class CreamScript : EnemyScript
 
     private GameObject GetClosestChocolate()
     {
-        var gameControllerScript = gameController.GetComponent<GameControllerScript>();
+        var gameControllerScript = GameController.GetComponent<GameControllerScript>();
     
         if (!gameControllerScript.chocolates.Any())
         {

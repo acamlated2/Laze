@@ -38,7 +38,7 @@ public class HealthBarScript : MonoBehaviour
         }
         
         bar.fillAmount = newHealth / _healthMax;
-        text.text = newHealth + " / " + _healthMax;
+        text.text = (int)newHealth + " / " + _healthMax;
     }
 
     private void Update()

@@ -11,7 +11,7 @@ public class ChocolateScript : EnemyScript
         base.Awake();
         type = Type.Chocolate;
 
-        var gameControllerScript = gameController.GetComponent<GameControllerScript>();
+        var gameControllerScript = GameController.GetComponent<GameControllerScript>();
         gameControllerScript.chocolates.Add(gameObject);
 
         health = 50;
@@ -19,7 +19,7 @@ public class ChocolateScript : EnemyScript
 
     protected override void FixedUpdate()
     {
-        if (player == null)
+        if (Player == null)
         {
             return;
         }
@@ -36,7 +36,7 @@ public class ChocolateScript : EnemyScript
 
     private void HandleShieldedMovements()
     {
-        Vector3 desiredPosition = player.transform.position - (player.transform.position - 
+        Vector3 desiredPosition = Player.transform.position - (Player.transform.position - 
                                                                transform.position).normalized * panicDistance;
         
         agent.SetDestination(desiredPosition);
@@ -45,6 +45,6 @@ public class ChocolateScript : EnemyScript
     protected override void Die()
     {
         base.Die();
-        gameController.GetComponent<GameControllerScript>().chocolates.Remove(gameObject);
+        GameController.GetComponent<GameControllerScript>().chocolates.Remove(gameObject);
     }
 }

@@ -1,5 +1,44 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8197984808925944989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0813fc0b8f3864b924938b25a4f79a, type: 3}
+  m_Name: CheckEnemiesPausedNode
+  m_EditorClassIdentifier: 
+  state: 1
+  started: 0
+  guid: 3835528a15107c34f8bd186e391580b0
+  position: {x: 471.99994, y: 0.000008493767}
+--- !u!114 &-7997399262621456488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b1dc70ba609ce4f8ce4259125ca3ac, type: 3}
+  m_Name: SelectorNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 400b302f4a6ce2445a32d376292dfb75
+  position: {x: 346.30322, y: 0.000041574134}
+  children:
+  - {fileID: -8197984808925944989}
+  - {fileID: -4853858347783779659}
+  - {fileID: 1948277536642874874}
+  check: {fileID: -8197984808925944989}
+  success: {fileID: -4853858347783779659}
+  failure: {fileID: 1948277536642874874}
 --- !u!114 &-6841821335380260706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,7 +54,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: 24b9ede4b2ea500499c10f445fd7c955
-  position: {x: 473.59998, y: 117.18342}
+  position: {x: 923.29565, y: 358.39996}
   runAwayDistance: 5
 --- !u!114 &-6415892376389983181
 MonoBehaviour:
@@ -32,7 +71,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: 5e77344b115156f439f995a5f038f3c6
-  position: {x: 864.7132, y: 792.9946}
+  position: {x: 1314.4956, y: 1034.3999}
   target: {fileID: 0}
   distance: 20
 --- !u!114 &-5311440125704587398
@@ -50,9 +89,25 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: c097ceb4ef47a4640b07e0100d907bcb
-  position: {x: 657.5132, y: 379.3946}
+  position: {x: 1107.2957, y: 620.7999}
   target: {fileID: 0}
   distance: 0
+--- !u!114 &-4853858347783779659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5649b85a659e284eb72d97d8757bf5c, type: 3}
+  m_Name: StopEverythingNode
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: 9d93f949fd10f5c4cb6e8f5d52dd2de6
+  position: {x: 510.39993, y: 126.101974}
 --- !u!114 &-4462953071368280410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,10 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b1dc70ba609ce4f8ce4259125ca3ac, type: 3}
   m_Name: SelectorNode
   m_EditorClassIdentifier: 
-  state: 0
+  state: 2
   started: 0
   guid: e97d21f3df40ce741a87bc1d5bc65832
-  position: {x: 309.7824, y: 0.0000072784424}
+  position: {x: 759.29553, y: 241.59999}
   children:
   - {fileID: -3664161368946744856}
   - {fileID: -6841821335380260706}
@@ -91,7 +146,7 @@ MonoBehaviour:
   state: 1
   started: 0
   guid: b2887d6bfc939f84b8147075aa969d57
-  position: {x: 435.2, y: 0.0000072784424}
+  position: {x: 884.8954, y: 241.59999}
   detectDistance: 5
 --- !u!114 &-1151655208134923096
 MonoBehaviour:
@@ -108,7 +163,7 @@ MonoBehaviour:
   state: 1
   started: 0
   guid: 14f244c48d7d0984880a3f06bb87fa7b
-  position: {x: 597.5132, y: 248.19461}
+  position: {x: 1047.2957, y: 489.59998}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +191,10 @@ MonoBehaviour:
   - {fileID: -4462953071368280410}
   - {fileID: -3664161368946744856}
   - {fileID: -6841821335380260706}
+  - {fileID: -7997399262621456488}
+  - {fileID: -8197984808925944989}
+  - {fileID: -4853858347783779659}
+  - {fileID: 1948277536642874874}
 --- !u!114 &1075878941635677858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +211,23 @@ MonoBehaviour:
   started: 0
   guid: 7f94a727ed5556841a37d9ef8e4c8ec2
   position: {x: 149, y: 0}
+  child: {fileID: -7997399262621456488}
+--- !u!114 &1948277536642874874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c591079969c0b574baeda5053af81997, type: 3}
+  m_Name: StartEverythingNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 446f3ce70dbf76d419c87d2e4aa7ae99
+  position: {x: 510.40002, y: 241.60002}
   child: {fileID: -4462953071368280410}
 --- !u!114 &1962432430095545768
 MonoBehaviour:
@@ -168,7 +244,7 @@ MonoBehaviour:
   state: 1
   started: 0
   guid: 45bd3140422802847acf011255744571
-  position: {x: 771.11316, y: 539.3946}
+  position: {x: 1220.8955, y: 780.7999}
 --- !u!114 &4253716577522432865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +260,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: 75920fc8e2b0f5949b44d7571d56d3ab
-  position: {x: 657.5132, y: 539.3946}
+  position: {x: 1107.2957, y: 780.7999}
   children:
   - {fileID: 1962432430095545768}
   - {fileID: 8033588296142023405}
@@ -207,7 +283,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: 9bc7f78357584a14d833e8dd41228e7f
-  position: {x: 864.7132, y: 648.9946}
+  position: {x: 1314.4956, y: 890.3999}
 --- !u!114 &8561307106459211615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +299,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: ddc74c560d693224d8c48903d0109764
-  position: {x: 473.51315, y: 248.19461}
+  position: {x: 923.29565, y: 489.59998}
   children:
   - {fileID: -1151655208134923096}
   - {fileID: 4253716577522432865}

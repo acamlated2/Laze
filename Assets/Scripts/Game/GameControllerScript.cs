@@ -31,6 +31,9 @@ public class GameControllerScript : MonoBehaviour
     public List<GameObject> enemies = new List<GameObject>();
     public List<GameObject> chocolates = new List<GameObject>();
     
+    // game controller
+    private GameStateControllerScript _gameStateControllerScript;
+    
     private void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -46,6 +49,8 @@ public class GameControllerScript : MonoBehaviour
         
         _expBar = GameObject.FindGameObjectWithTag("ExpBarUI");
         _expBar.GetComponent<UIBarScript>().customText = true;
+        
+        _gameStateControllerScript = GetComponent<GameStateControllerScript>();
     }
 
     private void Start()
@@ -134,6 +139,8 @@ public class GameControllerScript : MonoBehaviour
             expToLevelUp += expToLevelUp * 20 / 100;
             
             _expBar.GetComponent<UIBarScript>().ChangeText(_level.ToString());
+            
+            _gameStateControllerScript.ChangeState(GameStateControllerScript.GameState.Upgrade, _player);
         }
         
         _expBar.GetComponent<UIBarScript>().ChangeValue(_exp);

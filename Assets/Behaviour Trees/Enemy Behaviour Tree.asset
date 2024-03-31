@@ -1,5 +1,38 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9089733883385367121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c591079969c0b574baeda5053af81997, type: 3}
+  m_Name: StartEverythingNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 704fe86a8c2adbe4f908e13bb828943d
+  position: {x: 501.59995, y: 242.4}
+  child: {fileID: 5794673211069806550}
+--- !u!114 &-8679069505156582272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5649b85a659e284eb72d97d8757bf5c, type: 3}
+  m_Name: StopEverythingNode
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
+  guid: c863dc8cb58e11841b737fa6dadb0d39
+  position: {x: 501.6002, y: 122.71995}
 --- !u!114 &-7339988937060592221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16,7 +49,7 @@ MonoBehaviour:
   started: 0
   guid: 5a7aa8bfb109e864a9f486d3651dee2a
   position: {x: 163.99997, y: 0}
-  child: {fileID: 5794673211069806550}
+  child: {fileID: 893490606840127176}
 --- !u!114 &-6609480261323151451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,8 +65,24 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: 4ef2add2df1db2a4f835f6091d672590
-  position: {x: 518.248, y: 139.2}
+  position: {x: 895.8389, y: 381.59998}
   runAwayDistance: 5
+--- !u!114 &-4497492948221312327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0813fc0b8f3864b924938b25a4f79a, type: 3}
+  m_Name: CheckEnemiesPausedNode
+  m_EditorClassIdentifier: 
+  state: 1
+  started: 0
+  guid: d459ecd477d55454fa96622c7fd32f06
+  position: {x: 463.2, y: -0.0000384655}
 --- !u!114 &-1930794504662372614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,7 +98,7 @@ MonoBehaviour:
   state: 1
   started: 0
   guid: 37f3ffe9caf4f804ca45178cf1a6b68d
-  position: {x: 462.40002, y: 0}
+  position: {x: 839.8389, y: 242.40002}
   detectDistance: 5
 --- !u!114 &-579640836476698609
 MonoBehaviour:
@@ -66,7 +115,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: 2562ebd3e0fcfc148bdf19bfb53742cd
-  position: {x: 518.4, y: 260.40002}
+  position: {x: 895.8389, y: 503.20004}
   target: {fileID: 0}
   distance: 0
 --- !u!114 &11400000
@@ -90,7 +139,11 @@ MonoBehaviour:
   - {fileID: 5794673211069806550}
   - {fileID: -1930794504662372614}
   - {fileID: -6609480261323151451}
---- !u!114 &5794673211069806550
+  - {fileID: 893490606840127176}
+  - {fileID: -4497492948221312327}
+  - {fileID: -8679069505156582272}
+  - {fileID: -9089733883385367121}
+--- !u!114 &893490606840127176
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,8 +157,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
+  guid: 44f6c8c4f4037864a9b5d054dd8b897e
+  position: {x: 337.29352, y: 0.0000006992341}
+  children:
+  - {fileID: -4497492948221312327}
+  - {fileID: -8679069505156582272}
+  - {fileID: -9089733883385367121}
+  check: {fileID: -4497492948221312327}
+  success: {fileID: -8679069505156582272}
+  failure: {fileID: -9089733883385367121}
+--- !u!114 &5794673211069806550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b1dc70ba609ce4f8ce4259125ca3ac, type: 3}
+  m_Name: SelectorNode
+  m_EditorClassIdentifier: 
+  state: 2
+  started: 0
   guid: b7191372c3e9629478bd72a9ee0b239f
-  position: {x: 336.65558, y: -0.0000102386475}
+  position: {x: 714.2389, y: 242.40002}
   children:
   - {fileID: -1930794504662372614}
   - {fileID: -6609480261323151451}

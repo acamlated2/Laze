@@ -94,7 +94,7 @@ public class PlayerController : ObjectWithStatsScript
             _aimDir = dirToMouse;
         }
         
-        gameController.GetComponent<WeaponManagerScript>().Aim(_aimDir);
+        GameController.GetComponent<WeaponManagerScript>().Aim(_aimDir);
         
         Vector3 searchPosition = transform.position;
 

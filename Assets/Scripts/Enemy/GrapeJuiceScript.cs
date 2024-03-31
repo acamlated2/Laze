@@ -14,8 +14,8 @@ public class GrapeJuiceScript : EnemyScript
         base.Awake();
         type = Type.GrapeJuice;
 
-        shouldAttack = true;
-        target = player;
+        ShouldAttack = true;
+        target = Player;
     }
 
     protected override void Attack()

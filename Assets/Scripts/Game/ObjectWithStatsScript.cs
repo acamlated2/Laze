@@ -8,36 +8,38 @@ public class ObjectWithStatsScript : MonoBehaviour
     [Header("General Stats")]
     [SerializeField] [Min(0.1f)] public float health = 30;
 
+    public bool paused;
+
     [SerializeField] protected bool handleAttack = true;
-    protected bool shouldAttack;
-    protected float attackTimer;
+    protected bool ShouldAttack;
+    protected float AttackTimer;
     [SerializeField] [Min(0.1f)] protected float attackTime = 1;
 
-    protected GameObject gameController;
+    protected GameObject GameController;
 
     [SerializeField] private GameObject healthBarPrefab;
-    protected GameObject healthBar;
+    protected GameObject HealthBar;
     private bool _maxHealthSet;
 
     protected virtual void Awake()
     {
-        attackTimer = attackTime;
+        AttackTimer = attackTime;
         
-        gameController = GameObject.FindGameObjectWithTag("GameController");
+        GameController = GameObject.FindGameObjectWithTag("GameController");
         
         // create health bar
-        healthBar = Instantiate(healthBarPrefab, transform.position, Quaternion.identity);
-        healthBar.GetComponent<HealthBarScript>().owner = transform.gameObject;
+        HealthBar = Instantiate(healthBarPrefab, transform.position, Quaternion.identity);
+        HealthBar.GetComponent<HealthBarScript>().owner = transform.gameObject;
     }
 
     protected virtual void Start()
     {
-        healthBar.GetComponent<HealthBarScript>().ChangeMaxHealth(health);
+        HealthBar.GetComponent<HealthBarScript>().ChangeMaxHealth(health);
     }
 
     protected void OnDestroy()
     {
-        Destroy(healthBar);
+        Destroy(HealthBar);
     }
 
     protected virtual void Update()
@@ -50,15 +52,18 @@ public class ObjectWithStatsScript : MonoBehaviour
 
     private void TimeAttacks()
     {
-        if (shouldAttack)
+        if (!paused)
         {
-            attackTimer -= 1 * Time.deltaTime;
-
-            if (attackTimer <= 0)
+            if (ShouldAttack)
             {
-                attackTimer = attackTime;
+                AttackTimer -= 1 * Time.deltaTime;
+
+                if (AttackTimer <= 0)
+                {
+                    AttackTimer = attackTime;
                 
-                Attack();
+                    Attack();
+                }
             }
         }
     }
@@ -72,13 +77,13 @@ public class ObjectWithStatsScript : MonoBehaviour
     {
         health -= damage;
         
-        healthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
+        HealthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
 
         if (health <= 0)
         {
             Destroy(transform.gameObject);
             
-            gameController.GetComponent<GameControllerScript>().RemoveTarget(gameObject);
+            GameController.GetComponent<GameControllerScript>().RemoveTarget(gameObject);
         }
     }
 }

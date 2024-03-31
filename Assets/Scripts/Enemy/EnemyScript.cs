@@ -23,7 +23,7 @@ public class EnemyScript : ObjectWithStatsScript
     [SerializeField] protected float damage = 10;
 
     public GameObject target;
-    protected GameObject player;
+    protected GameObject Player;
 
     public float panicDistance = 5;
     
@@ -37,11 +37,11 @@ public class EnemyScript : ObjectWithStatsScript
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
-        gameController = GameObject.FindGameObjectWithTag("GameController");
-        player = GameObject.FindGameObjectWithTag("Player");
-        target = player;
+        GameController = GameObject.FindGameObjectWithTag("GameController");
+        Player = GameObject.FindGameObjectWithTag("Player");
+        target = Player;
 
-        var gameControllerScript = gameController.GetComponent<GameControllerScript>();
+        var gameControllerScript = GameController.GetComponent<GameControllerScript>();
         
         gameControllerScript.AddToList(gameControllerScript.enemies, gameObject);
     }
@@ -50,18 +50,18 @@ public class EnemyScript : ObjectWithStatsScript
     {
         base.Update();
         
-        var gameControllerScript = gameController.GetComponent<GameControllerScript>();
+        var gameControllerScript = GameController.GetComponent<GameControllerScript>();
         target = gameControllerScript.GetClosestTarget(transform);
 
-        if (player != null)
+        if (Player != null)
         {
-            playerDistance = Vector3.Distance(transform.position, player.transform.position);
+            playerDistance = Vector3.Distance(transform.position, Player.transform.position);
         }
     }
     
     protected virtual void FixedUpdate()
     {
-        if (player == null)
+        if (Player == null)
         {
             return;
         }
@@ -72,7 +72,7 @@ public class EnemyScript : ObjectWithStatsScript
     public override void Damage(float damage)
     {
         health -= damage;
-        healthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
+        HealthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
 
         if (health <= 0)
         {
@@ -94,14 +94,23 @@ public class EnemyScript : ObjectWithStatsScript
         switch (type)
         {
             case Type.Sushi:
+                newExpScript.SetValue(3);
+                break;
+            case Type.Chocolate:
                 newExpScript.SetValue(5);
+                break;
+            case Type.Cream:
+                newExpScript.SetValue(5);
+                break;
+            case Type.GrapeJuice:
+                newExpScript.SetValue(7);
                 break;
         }
     }
 
     protected virtual void Die()
     {
-        var gameControllerScript = gameController.GetComponent<GameControllerScript>();
+        var gameControllerScript = GameController.GetComponent<GameControllerScript>();
         gameControllerScript.enemies.Remove(gameObject);
             
         SpawnExp();
