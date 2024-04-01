@@ -13,6 +13,8 @@ public class WeaponScript : MonoBehaviour
     
     protected GameObject player;
 
+    protected ObjectPoolScript Pool;
+
     protected virtual void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");

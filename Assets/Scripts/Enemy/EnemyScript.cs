@@ -31,6 +31,7 @@ public class EnemyScript : ObjectWithStatsScript
     public float playerDistance;
 
     private ObjectPoolScript _expPool;
+    protected ObjectPoolScript ProjectilePool;
 
     protected override void Awake()
     {

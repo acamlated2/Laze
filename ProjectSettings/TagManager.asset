@@ -23,6 +23,13 @@ TagManager:
   - ExpObjectPool
   - HealthBarObjectPool
   - EnemyObjectPool
+  - KnifeManager
+  - IceStaffManager
+  - WindStaffManager
+  - BoulderManager
+  - SwordManager
+  - CreamProjectileObjectPool
+  - GrapeJuiceProjectileObjectPool
   layers:
   - Default
   - TransparentFX

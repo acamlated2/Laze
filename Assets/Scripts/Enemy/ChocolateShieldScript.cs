@@ -29,7 +29,7 @@ public class ChocolateShieldScript : ObjectWithStatsScript
 
         if (health <= 0)
         {
-            Destroy(_pivot);
+            _pivot.SetActive(false);
             _chocolate.GetComponent<ChocolateScript>().haveShield = false;
         }
     }

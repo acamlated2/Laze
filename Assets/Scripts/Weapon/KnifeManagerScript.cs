@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class KnifeManagerScript : BaseWeaponManagerScript
 {
-    [SerializeField] private GameObject prefab;
-
     protected override void Awake()
     {
         base.Awake();
         type = Type.ThrowingKnife;
         canBurst = true;
+
+        Pool = GameObject.FindGameObjectWithTag("KnifeManager").GetComponent<ObjectPoolScript>();
     }
 
     protected override void Attack()
@@ -21,8 +21,9 @@ public class KnifeManagerScript : BaseWeaponManagerScript
         }
         
         float angle = gameController.GetComponent<WeaponManagerScript>().angle;
-        
-        GameObject newKnife = Instantiate(prefab, player.transform.position, Quaternion.identity);
+
+        GameObject newKnife = Pool.GetObject();
+        newKnife.transform.position = player.transform.position;
         newKnife.GetComponent<WeaponScript>().InitiateAngle(angle);
     }
 }

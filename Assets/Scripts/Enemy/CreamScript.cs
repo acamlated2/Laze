@@ -19,6 +19,8 @@ public class CreamScript : EnemyScript
         type = Type.Cream;
 
         ShouldAttack = true;
+
+        ProjectilePool = GameObject.FindGameObjectWithTag("CreamProjectileObjectPool").GetComponent<ObjectPoolScript>();
     }
 
     protected override void Update()
@@ -30,7 +32,8 @@ public class CreamScript : EnemyScript
 
     protected override void Attack()
     {
-        GameObject newProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
+        GameObject newProjectile = ProjectilePool.GetObject();
+        newProjectile.transform.position = transform.position;
         newProjectile.GetComponent<CreamProjectileScript>().SetRotation(target.transform.position);
     }
 

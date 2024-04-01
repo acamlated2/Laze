@@ -16,7 +16,7 @@ public class WeaponManagerScript : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            _weaponManagers.Add(transform.GetChild(i).gameObject);
+            _weaponManagers.Add(transform.GetChild(0).GetChild(i).gameObject);
         }
 
         _weaponManagers[0].GetComponent<BaseWeaponManagerScript>().unlocked = true;

@@ -7,17 +7,39 @@ using UnityEngine;
 public class GrapeProjectileScript : MonoBehaviour
 {
     [SerializeField] private float lifetime = 3;
+    private float lifetimeDefault;
     [SerializeField] private float maxDamage = 20;
     [SerializeField] private float speed = 15;
     [SerializeField] private float range = 10;
 
     private bool _animating;
     private float _scale;
+    private float _scaleDefault;
     private float _scalingSpeed;
+    private float _scalingSpeedDefault;
+
+    private ObjectPoolScript _pool;
 
     private void Awake()
     {
         _scale = transform.localScale.x;
+        _scaleDefault = _scale;
+
+        _scalingSpeedDefault = _scalingSpeed;
+
+        lifetimeDefault = lifetime;
+
+        _pool = GameObject.FindGameObjectWithTag("GrapeJuiceProjectileObjectPool").GetComponent<ObjectPoolScript>();
+    }
+    
+    private void OnEnable()
+    {
+        lifetime = lifetimeDefault;
+
+        _scale = _scaleDefault;
+        transform.localScale = new Vector3(_scale, _scale, 1);
+
+        _scalingSpeed = _scalingSpeedDefault;
     }
 
     private void FixedUpdate()
@@ -45,7 +67,9 @@ public class GrapeProjectileScript : MonoBehaviour
 
             if (_scale >= range * 5)
             {
-                Destroy(gameObject);
+                _animating = false;
+                transform.localScale = new Vector3(_scaleDefault, _scaleDefault, 1);
+                _pool.ReturnObject(gameObject);
             }
         }
     }

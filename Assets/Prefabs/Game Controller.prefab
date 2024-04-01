@@ -1,5 +1,41 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &109163105638357958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4755529927235172611}
+  m_Layer: 0
+  m_Name: Player Weapon Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4755529927235172611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109163105638357958}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2309762498782551493}
+  - {fileID: 223540067491917243}
+  - {fileID: 6856338800398118617}
+  - {fileID: 5557908400659713641}
+  - {fileID: 7338621616631185232}
+  m_Father: {fileID: 4423646959687594707}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &816768412328590976
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,9 +175,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5557908400659713641}
+  - component: {fileID: 8498401141104168724}
   m_Layer: 0
   m_Name: Boulder Manager
-  m_TagString: Untagged
+  m_TagString: BoulderManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,8 +196,22 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4423646959687594707}
+  m_Father: {fileID: 4755529927235172611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8498401141104168724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4059757045307761860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172f069fcc2dfd74fb348c1f708b004d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefab: {fileID: 0}
+  poolSize: 10
 --- !u!1 &4258360726411083081
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,9 +221,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6856338800398118617}
+  - component: {fileID: 6079770501615952504}
   m_Layer: 0
   m_Name: Wind Staff Manager
-  m_TagString: Untagged
+  m_TagString: WindStaffManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,8 +242,22 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4423646959687594707}
+  m_Father: {fileID: 4755529927235172611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6079770501615952504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4258360726411083081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172f069fcc2dfd74fb348c1f708b004d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefab: {fileID: 0}
+  poolSize: 10
 --- !u!1 &5072924184304054908
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,9 +314,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 223540067491917243}
+  - component: {fileID: 8135101811040397612}
   m_Layer: 0
   m_Name: Ice Staff Manager
-  m_TagString: Untagged
+  m_TagString: IceStaffManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -268,8 +335,69 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4423646959687594707}
+  m_Father: {fileID: 4755529927235172611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8135101811040397612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5454395257780321233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172f069fcc2dfd74fb348c1f708b004d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefab: {fileID: 0}
+  poolSize: 10
+--- !u!1 &6998390737828420538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4015125237590758573}
+  - component: {fileID: 2721661491864369086}
+  m_Layer: 0
+  m_Name: Grape Juice Projectile Object Pool
+  m_TagString: GrapeJuiceProjectileObjectPool
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4015125237590758573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6998390737828420538}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2102074883721299537}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2721661491864369086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6998390737828420538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172f069fcc2dfd74fb348c1f708b004d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefab: {fileID: 3327019148415885072, guid: 680c626cce14b3e47995843e34015953,
+    type: 3}
+  poolSize: 10
 --- !u!1 &7386829078043074746
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,12 +481,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2309762498782551493}
-  - {fileID: 223540067491917243}
-  - {fileID: 6856338800398118617}
-  - {fileID: 5557908400659713641}
-  - {fileID: 7338621616631185232}
+  - {fileID: 4755529927235172611}
   - {fileID: 8027653536238082226}
+  - {fileID: 2102074883721299537}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8848783928568128262
@@ -457,6 +582,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb7f195bda104174084890b6286f4556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7418494017691751673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2102074883721299537}
+  m_Layer: 0
+  m_Name: Enemy Projectile Pools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2102074883721299537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7418494017691751673}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6858589550393022903}
+  - {fileID: 4015125237590758573}
+  m_Father: {fileID: 4423646959687594707}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7912744516085204787
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,9 +625,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7338621616631185232}
   - component: {fileID: 8511474213332282935}
+  - component: {fileID: 2289844039324200167}
   m_Layer: 0
   m_Name: Sword Manager
-  m_TagString: Untagged
+  m_TagString: SwordManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -487,7 +646,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4423646959687594707}
+  m_Father: {fileID: 4755529927235172611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8511474213332282935
 MonoBehaviour:
@@ -506,7 +665,21 @@ MonoBehaviour:
   canBurst: 0
   burstAmount: 5
   burstDelay: 0.1
-  prefab: {fileID: 0}
+--- !u!114 &2289844039324200167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7912744516085204787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172f069fcc2dfd74fb348c1f708b004d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefab: {fileID: 5145108983460874919, guid: d9a44d99cd73e9f4486d0d88af3f7da6,
+    type: 3}
+  poolSize: 10
 --- !u!1 &8192689821477325501
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,9 +737,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2309762498782551493}
   - component: {fileID: 3293935419450021836}
+  - component: {fileID: 8871721323270761327}
   m_Layer: 0
   m_Name: Knife Manager
-  m_TagString: Untagged
+  m_TagString: KnifeManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -584,7 +758,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4423646959687594707}
+  m_Father: {fileID: 4755529927235172611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3293935419450021836
 MonoBehaviour:
@@ -603,4 +777,65 @@ MonoBehaviour:
   canBurst: 0
   burstAmount: 5
   burstDelay: 0.1
-  prefab: {fileID: 7822237227571562585, guid: f34cdbc760959984e8aafab0b582d462, type: 3}
+--- !u!114 &8871721323270761327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8252953154693059654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172f069fcc2dfd74fb348c1f708b004d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefab: {fileID: 7822237227571562585, guid: f34cdbc760959984e8aafab0b582d462,
+    type: 3}
+  poolSize: 10
+--- !u!1 &8364580077355176779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6858589550393022903}
+  - component: {fileID: 5330319302990323768}
+  m_Layer: 0
+  m_Name: Cream Projectile Object Pool
+  m_TagString: CreamProjectileObjectPool
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6858589550393022903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8364580077355176779}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2102074883721299537}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5330319302990323768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8364580077355176779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172f069fcc2dfd74fb348c1f708b004d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefab: {fileID: 7253361214600921465, guid: 4b59a1b61633bf0469b7a0e30d304bb8,
+    type: 3}
+  poolSize: 10

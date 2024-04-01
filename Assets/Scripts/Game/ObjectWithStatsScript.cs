@@ -37,7 +37,7 @@ public class ObjectWithStatsScript : MonoBehaviour
         maxHealth = health;
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         health = maxHealth;
         

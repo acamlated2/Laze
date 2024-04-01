@@ -7,6 +7,7 @@ public class GrapeJuiceScript : EnemyScript
 {
     [SerializeField] private GameObject projectile;
     [SerializeField] private int bulletCount = 3;
+    private int bulletCountDefault;
     public bool outOfBullets;
 
     protected override void Awake()
@@ -16,6 +17,19 @@ public class GrapeJuiceScript : EnemyScript
 
         ShouldAttack = true;
         target = Player;
+
+        ProjectilePool = GameObject.FindGameObjectWithTag("GrapeJuiceProjectileObjectPool")
+            .GetComponent<ObjectPoolScript>();
+
+        bulletCountDefault = bulletCount;
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        bulletCount = bulletCountDefault;
+        outOfBullets = false;
     }
 
     protected override void Attack()
@@ -24,8 +38,9 @@ public class GrapeJuiceScript : EnemyScript
         {
             return;
         }
-        
-        GameObject newProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
+
+        GameObject newProjectile = ProjectilePool.GetObject();
+        newProjectile.transform.position = transform.position;
         newProjectile.GetComponent<GrapeProjectileScript>().SetRotation(target.transform.position);
 
         bulletCount -= 1;

@@ -33,6 +33,8 @@ public class BaseWeaponManagerScript : MonoBehaviour
     protected GameObject gameController;
     protected GameObject player;
 
+    protected ObjectPoolScript Pool;
+
     protected virtual void Awake()
     {
         attackTimer = attackDelay;

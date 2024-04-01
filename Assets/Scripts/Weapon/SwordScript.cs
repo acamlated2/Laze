@@ -6,12 +6,22 @@ using UnityEngine;
 public class SwordScript : WeaponScript
 {
     [SerializeField] [Min(0.1f)] private float swordTimer = 0.25f;
+    private float swordTimerDefault;
     
     protected override void Awake()
     {
         base.Awake();
 
         type = BaseWeaponManagerScript.Type.Sword;
+
+        Pool = GameObject.FindGameObjectWithTag("SwordManager").GetComponent<ObjectPoolScript>();
+
+        swordTimerDefault = swordTimer;
+    }
+
+    private void OnEnable()
+    {
+        swordTimer = swordTimerDefault;
     }
 
     private void Update()
@@ -29,7 +39,7 @@ public class SwordScript : WeaponScript
         
         if (swordTimer <= 0)
         {
-            Destroy(gameObject);
+            Pool.ReturnObject(gameObject);
         }
         transform.rotation = Quaternion.Euler(rotation.x, rotation.y,
             rotation.z - 360 * Time.deltaTime);

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SwordManagerScript : BaseWeaponManagerScript
 {
-    [SerializeField] private GameObject prefab;
-    
     protected override void Awake()
     {
         base.Awake();
 
         type = Type.Sword;
+
+        Pool = GameObject.FindGameObjectWithTag("SwordManager").GetComponent<ObjectPoolScript>();
     }
     
     protected override void Attack()
@@ -21,8 +21,9 @@ public class SwordManagerScript : BaseWeaponManagerScript
         }
         
         float angle = gameController.GetComponent<WeaponManagerScript>().angle;
-        
-        GameObject newSword = Instantiate(prefab, player.transform.position, Quaternion.identity);
+
+        GameObject newSword = Pool.GetObject();
+        newSword.transform.position = player.transform.position;
         newSword.GetComponent<WeaponScript>().InitiateAngle(angle);
     }
 }

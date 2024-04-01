@@ -46,6 +46,11 @@ public class ObjectPoolScript : MonoBehaviour
 
     private GameObject InstantiateNewObject()
     {
+        if (!objectPrefab)
+        {
+            return null;
+        }
+        
         GameObject newObject = Instantiate(objectPrefab, transform);
         newObject.SetActive(false);
         _pool.Add(newObject);

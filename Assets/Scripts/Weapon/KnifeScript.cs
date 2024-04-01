@@ -12,6 +12,13 @@ public class KnifeScript : WeaponScript
         base.Awake();
 
         type = BaseWeaponManagerScript.Type.ThrowingKnife;
+
+        Pool = GameObject.FindGameObjectWithTag("KnifeManager").GetComponent<ObjectPoolScript>();
+    }
+
+    private void OnEnable()
+    {
+        collided = false;
     }
 
     private void Update()
@@ -28,7 +35,7 @@ public class KnifeScript : WeaponScript
         
         if (distanceToPlayer >= distanceToDelete)
         {
-            Destroy(gameObject);
+            Pool.ReturnObject(gameObject);
         }
     }
 
@@ -41,7 +48,7 @@ public class KnifeScript : WeaponScript
                 return;
             }
             
-            Destroy(gameObject);
+            Pool.ReturnObject(gameObject);
             
             other.gameObject.GetComponent<ObjectWithStatsScript>().Damage(damage);
 
