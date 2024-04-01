@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.Serialization;
 
 public class ObjectWithStatsScript : MonoBehaviour
 {
     [Header("General Stats")]
-    [SerializeField] [Min(0.1f)] public float health = 30;
+    [Min(0.1f)] public float health = 30;
+    public float maxHealth;
+    public bool immortal;
 
     public bool paused;
 
@@ -17,9 +21,10 @@ public class ObjectWithStatsScript : MonoBehaviour
 
     protected GameObject GameController;
 
-    [SerializeField] private GameObject healthBarPrefab;
+    protected ObjectPoolScript HealthBarPool;
     protected GameObject HealthBar;
-    private bool _maxHealthSet;
+    
+    public GameObject target;
 
     protected virtual void Awake()
     {
@@ -27,19 +32,19 @@ public class ObjectWithStatsScript : MonoBehaviour
         
         GameController = GameObject.FindGameObjectWithTag("GameController");
         
-        // create health bar
-        HealthBar = Instantiate(healthBarPrefab, transform.position, Quaternion.identity);
+        HealthBarPool = GameObject.FindGameObjectWithTag("HealthBarObjectPool").GetComponent<ObjectPoolScript>();
+
+        maxHealth = health;
+    }
+
+    private void OnEnable()
+    {
+        health = maxHealth;
+        
+        HealthBar = HealthBarPool.GetObject();
         HealthBar.GetComponent<HealthBarScript>().owner = transform.gameObject;
-    }
-
-    protected virtual void Start()
-    {
         HealthBar.GetComponent<HealthBarScript>().ChangeMaxHealth(health);
-    }
-
-    protected void OnDestroy()
-    {
-        Destroy(HealthBar);
+        HealthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
     }
 
     protected virtual void Update()
@@ -52,19 +57,28 @@ public class ObjectWithStatsScript : MonoBehaviour
 
     private void TimeAttacks()
     {
-        if (!paused)
+        if (paused)
         {
-            if (ShouldAttack)
-            {
-                AttackTimer -= 1 * Time.deltaTime;
+            return;
+        }
 
-                if (AttackTimer <= 0)
-                {
-                    AttackTimer = attackTime;
+        if (!target)
+        {
+            return;
+        }
+
+        if (!ShouldAttack)
+        {
+            return;
+        }
+        
+        AttackTimer -= 1 * Time.deltaTime;
+
+        if (AttackTimer <= 0)
+        {
+            AttackTimer = attackTime;
                 
-                    Attack();
-                }
-            }
+            Attack();
         }
     }
 
@@ -75,15 +89,18 @@ public class ObjectWithStatsScript : MonoBehaviour
 
     public virtual void Damage(float damage)
     {
+        if (immortal)
+        {
+            return;
+        }
+        
         health -= damage;
         
         HealthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
 
         if (health <= 0)
         {
-            Destroy(transform.gameObject);
-            
-            GameController.GetComponent<GameControllerScript>().RemoveTarget(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

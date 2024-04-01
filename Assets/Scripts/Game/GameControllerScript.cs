@@ -8,11 +8,6 @@ public class GameControllerScript : MonoBehaviour
 {
     private GameObject _player;
     
-    private GameObject _base;
-    private GameObject[] _towers;
-
-    public List<GameObject> targetables = new List<GameObject>();
-    
     // player
     private float _exp;
     private int _level = 1;
@@ -22,14 +17,9 @@ public class GameControllerScript : MonoBehaviour
     private GameObject _expBar;
     
     // exp
-    public GameObject expPrefab;
-    public List<GameObject> exps = new List<GameObject>();
+    private ObjectPoolScript _expObjectPool;
     [SerializeField] [Min(0.1f)] private float expToPlayerAttractDistance = 5;
     [SerializeField] [Min(0.1f)] private float expToExpAttractDistance = 3;
-    
-    // enemies
-    public List<GameObject> enemies = new List<GameObject>();
-    public List<GameObject> chocolates = new List<GameObject>();
     
     // game controller
     private GameStateControllerScript _gameStateControllerScript;
@@ -37,20 +27,13 @@ public class GameControllerScript : MonoBehaviour
     private void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        _base = GameObject.FindGameObjectWithTag("Base");
-        _towers = GameObject.FindGameObjectsWithTag("Tower");
-
-        targetables.Add(_player);
-        targetables.Add(_base);
-        for (int i = 0; i < _towers.Length; i++)
-        {
-            targetables.Add(_towers[i]);
-        }
         
         _expBar = GameObject.FindGameObjectWithTag("ExpBarUI");
         _expBar.GetComponent<UIBarScript>().customText = true;
         
         _gameStateControllerScript = GetComponent<GameStateControllerScript>();
+
+        _expObjectPool = GameObject.FindGameObjectWithTag("ExpObjectPool").GetComponent<ObjectPoolScript>();
     }
 
     private void Start()
@@ -66,10 +49,6 @@ public class GameControllerScript : MonoBehaviour
     private void OnDisable()
     {
         GameEventControllerScript.current.OnGameStart -= StartGame;
-        targetables.Clear();
-        exps.Clear();
-        enemies.Clear();
-        chocolates.Clear();
     }
 
     private void StartGame()
@@ -77,52 +56,9 @@ public class GameControllerScript : MonoBehaviour
         GetComponent<EnemySpawningScript>().enabled = true;
     }
 
-    private void OnApplicationQuit()
-    {
-        targetables.Clear();
-        exps.Clear();
-        enemies.Clear();
-        chocolates.Clear();
-    }
-
     private void Update()
     {
         AttractExp();
-    }
-
-    public GameObject GetClosestTarget(Transform enemyTransform)
-    {
-        GameObject closestObject = null;
-        float closestDistance = float.MaxValue;
-        
-        for (int i = 0; i < targetables.Count; i++)
-        {
-            float distance = Vector2.Distance(enemyTransform.position, targetables[i].transform.position);
-
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestObject = targetables[i];
-            }
-        }
-
-        return closestObject;
-    }
-
-    public void RemoveTarget(GameObject target)
-    {
-        List<GameObject> tempList = new List<GameObject>();
-        for (int i = 0; i < targetables.Count; i++)
-        {
-            if (targetables[i] == target)
-            {
-                continue;
-            }
-            
-            tempList.Add(targetables[i].gameObject);
-        }
-
-        targetables = tempList;
     }
 
     public void AddExp(float addedExp)
@@ -152,6 +88,12 @@ public class GameControllerScript : MonoBehaviour
         {
             return;
         }
+
+        List<GameObject> exps = new List<GameObject>();
+        for (int i = 0; i < _expObjectPool.transform.childCount; i++)
+        {
+            exps.Add(_expObjectPool.transform.GetChild(i).gameObject);
+        }
         
         for (int i = 0; i < exps.Count; i++)
         {
@@ -178,40 +120,5 @@ public class GameControllerScript : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void AddToList(List<GameObject> list, GameObject gameobject)
-    {
-        list.Add(gameobject);
-    }
-    
-    public void RemoveFromList(List<GameObject> list, GameObject gameobject)
-    {
-        List<GameObject> tempList = new List<GameObject>();
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (list[i] == gameobject)
-            {
-                continue;
-            }
-            
-            tempList.Add(list[i].gameObject);
-        }
-
-        list.Clear();
-        list = tempList;
-    }
-
-    public int GetIndex(List<GameObject> list, GameObject gameobject)
-    {
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (list[i] == gameobject)
-            {
-                return i;
-            }
-        }
-
-        return -1;
     }
 }

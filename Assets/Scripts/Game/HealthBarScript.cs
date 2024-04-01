@@ -17,6 +17,8 @@ public class HealthBarScript : MonoBehaviour
     public GameObject owner;
 
     private Camera _camera;
+    protected ObjectPoolScript _healthBarPool;
+    
 
     private void Awake()
     {
@@ -28,6 +30,8 @@ public class HealthBarScript : MonoBehaviour
         transform.localScale = new Vector3(1, 1, 1);
 
         _camera = Camera.main;
+        
+        _healthBarPool = GameObject.FindGameObjectWithTag("HealthBarObjectPool").GetComponent<ObjectPoolScript>();
     }
 
     public void ChangeHealth(float newHealth)
@@ -43,6 +47,12 @@ public class HealthBarScript : MonoBehaviour
 
     private void Update()
     {
+        if (!owner || !owner.activeInHierarchy)
+        {
+            _healthBarPool.ReturnObject(gameObject);
+            return;
+        }
+        
         Vector3 position = owner.transform.position + new Vector3(0, 2, 0);
         
         transform.position = _camera.WorldToScreenPoint(position);

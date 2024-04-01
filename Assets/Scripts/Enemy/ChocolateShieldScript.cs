@@ -19,13 +19,17 @@ public class ChocolateShieldScript : ObjectWithStatsScript
 
     public override void Damage(float damage)
     {
+        if (immortal)
+        {
+            return;
+        }
+        
         health -= damage;
         HealthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
 
         if (health <= 0)
         {
             Destroy(_pivot);
-
             _chocolate.GetComponent<ChocolateScript>().haveShield = false;
         }
     }

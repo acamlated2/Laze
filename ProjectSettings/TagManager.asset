@@ -20,6 +20,9 @@ TagManager:
   - UpgradeOptionsParent
   - ExpBarUI
   - HpBarUI
+  - ExpObjectPool
+  - HealthBarObjectPool
+  - EnemyObjectPool
   layers:
   - Default
   - TransparentFX

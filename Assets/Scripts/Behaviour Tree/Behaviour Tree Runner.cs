@@ -20,6 +20,10 @@ public class BehaviourTreeRunner : MonoBehaviour
         {
             return;
         }
+        if (!gameObject.activeInHierarchy)
+        {
+            return;
+        }
         
         tree.UpdateTree(transform);
     }

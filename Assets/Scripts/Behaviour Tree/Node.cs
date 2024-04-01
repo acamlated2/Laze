@@ -35,6 +35,16 @@ public abstract class Node : ScriptableObject
         Player = GameObject.FindGameObjectWithTag("Player");
         GameController = GameObject.FindGameObjectWithTag("GameController");
         
+        if (!Player)
+        {
+            return State.Success;
+        }
+
+        if (!ownerTransform.gameObject.activeInHierarchy)
+        {
+            return State.Success;
+        }
+        
         if (!started)
         {
             OnStart();

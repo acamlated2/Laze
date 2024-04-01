@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class EnemySpawningScript : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemyPrefabs;
+    private List<GameObject> _enemyPools = new List<GameObject>();
+    
     [SerializeField] private float spawnMinDistance = 20;
     [SerializeField] private float spawnMaxDistance = 30;
     
@@ -23,6 +25,11 @@ public class EnemySpawningScript : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _base = GameObject.FindGameObjectWithTag("Base");
         _towersObject = GameObject.FindGameObjectWithTag("Towers");
+        GameObject[] enemyPools = GameObject.FindGameObjectsWithTag("EnemyObjectPool");
+        foreach (var pool in enemyPools)
+        {
+            _enemyPools.Add(pool);
+        }
     }
 
     private void Update()
@@ -38,12 +45,17 @@ public class EnemySpawningScript : MonoBehaviour
 
     private void SpawnEnemyAtRandom()
     {
-        if (_player == null)
+        if (!_player)
+        {
+            return;
+        }
+
+        if (!_base)
         {
             return;
         }
         
-        Vector2 spawnPosition;
+        Vector3 spawnPosition;
         bool canSpawn = true;
         
         List<GameObject> towers = new List<GameObject>();
@@ -54,27 +66,29 @@ public class EnemySpawningScript : MonoBehaviour
 
         do
         {
-            spawnPosition = new Vector2(Random.Range(-spawnMaxDistance, spawnMaxDistance),
-                Random.Range(-spawnMaxDistance, spawnMaxDistance));
+            spawnPosition = new Vector3(Random.Range(-spawnMaxDistance, spawnMaxDistance),
+                Random.Range(-spawnMaxDistance, spawnMaxDistance), 0);
 
-            canSpawn = Vector2.Distance(spawnPosition, _player.transform.position) >= spawnMinDistance;
-            canSpawn = Vector2.Distance(spawnPosition, _base.transform.position) >= spawnMinDistance;
+            canSpawn = Vector3.Distance(spawnPosition, _player.transform.position) >= spawnMinDistance;
+            canSpawn = Vector3.Distance(spawnPosition, _base.transform.position) >= spawnMinDistance;
 
             foreach (var tower in towers)
             {
-                canSpawn = Vector2.Distance(spawnPosition, tower.transform.position) >= spawnMinDistance;
+                canSpawn = Vector3.Distance(spawnPosition, tower.transform.position) >= spawnMinDistance;
             }
         } while (!canSpawn);
 
-        GameObject newEnemy;
-        newEnemy = Instantiate(GetRandomPrefab(), spawnPosition, Quaternion.identity);
-    }
+        int randInt = Random.Range(0, _enemyPools.Count);
 
-    private GameObject GetRandomPrefab()
+        GameObject newEnemy = _enemyPools[randInt].GetComponent<ObjectPoolScript>().GetObject();
+        newEnemy.GetComponent<NavMeshAgent>().Warp(spawnPosition);
+    }
+    
+    public void ReturnEnemy(GameObject enemyToReturn)
     {
-        int randomNum = Random.Range(0, enemyPrefabs.Length);
-        GameObject randomPrefab = enemyPrefabs[randomNum];
-        
-        return randomPrefab;
+        foreach (var enemyPool in _enemyPools)
+        {
+            enemyPool.GetComponent<ObjectPoolScript>().ReturnObject(enemyToReturn);
+        }
     }
 }

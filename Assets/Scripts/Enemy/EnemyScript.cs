@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.iOS;
 
 public class EnemyScript : ObjectWithStatsScript
 {
@@ -21,13 +22,15 @@ public class EnemyScript : ObjectWithStatsScript
     protected NavMeshAgent agent;
 
     [SerializeField] protected float damage = 10;
-
-    public GameObject target;
+    
+    public bool shouldTargetPlayer;
     protected GameObject Player;
 
     public float panicDistance = 5;
     
     public float playerDistance;
+
+    private ObjectPoolScript _expPool;
 
     protected override void Awake()
     {
@@ -41,36 +44,35 @@ public class EnemyScript : ObjectWithStatsScript
         Player = GameObject.FindGameObjectWithTag("Player");
         target = Player;
 
-        var gameControllerScript = GameController.GetComponent<GameControllerScript>();
-        
-        gameControllerScript.AddToList(gameControllerScript.enemies, gameObject);
+        _expPool = GameObject.FindGameObjectWithTag("ExpObjectPool").GetComponent<ObjectPoolScript>();
     }
 
     protected override void Update()
     {
         base.Update();
-        
-        var gameControllerScript = GameController.GetComponent<GameControllerScript>();
-        target = gameControllerScript.GetClosestTarget(transform);
 
-        if (Player != null)
-        {
-            playerDistance = Vector3.Distance(transform.position, Player.transform.position);
-        }
-    }
-    
-    protected virtual void FixedUpdate()
-    {
-        if (Player == null)
+        if (!Player)
         {
             return;
         }
         
-        //agent.SetDestination(target.transform.position);
+        target = GetClosestTarget();
+        
+        if (shouldTargetPlayer)
+        {
+            target = Player;
+        }
+
+        playerDistance = Vector3.Distance(transform.position, Player.transform.position);
     }
 
     public override void Damage(float damage)
     {
+        if (immortal)
+        {
+            return;
+        }
+        
         health -= damage;
         HealthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
 
@@ -88,7 +90,8 @@ public class EnemyScript : ObjectWithStatsScript
 
     protected void SpawnExp()
     {
-        GameObject newExp = Instantiate(expPrefab, transform.position, Quaternion.identity);
+        GameObject newExp = _expPool.GetObject();
+        newExp.transform.position = transform.position;
         var newExpScript = newExp.GetComponent<ExpScript>();
         
         switch (type)
@@ -108,13 +111,50 @@ public class EnemyScript : ObjectWithStatsScript
         }
     }
 
-    protected virtual void Die()
+    protected void Die()
     {
-        var gameControllerScript = GameController.GetComponent<GameControllerScript>();
-        gameControllerScript.enemies.Remove(gameObject);
-            
         SpawnExp();
+        GameController.GetComponent<EnemySpawningScript>().ReturnEnemy(gameObject);
+        
+        OnDeath();
+    }
+
+    protected virtual void OnDeath()
+    {
+        
+    }
+
+    private GameObject GetClosestTarget()
+    {
+        List<GameObject> targetables = new List<GameObject>();
+        
+        ObjectWithStatsScript[] damageableObjects = FindObjectsOfType<ObjectWithStatsScript>();
+
+        foreach (var damageableObject in damageableObjects)
+        {
+            if (damageableObject.CompareTag("Shield") || 
+                damageableObject.CompareTag("Enemy"))
+            {
+                continue;
+            }
             
-        Destroy(gameObject);
+            targetables.Add(damageableObject.gameObject);
+        }
+        
+        GameObject closestObject = null;
+        float closestDistance = float.MaxValue;
+        
+        for (int i = 0; i < targetables.Count; i++)
+        {
+            float distance = Vector2.Distance(transform.position, targetables[i].transform.position);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestObject = targetables[i];
+            }
+        }
+
+        return closestObject;
     }
 }

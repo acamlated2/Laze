@@ -47,11 +47,9 @@ public class GrapeJuiceScript : EnemyScript
         }
     }
 
-    protected override void Die()
+    protected override void OnDeath()
     {
-        SpawnExp();
-        Destroy(gameObject);
-
+        base.OnDeath();
         SpawnRing();
     }
 
@@ -61,14 +59,14 @@ public class GrapeJuiceScript : EnemyScript
         
         List<Vector3> rotations = new List<Vector3>()
         {
-            new Vector3(0, 10),
-            new Vector3(10, 10),
-            new Vector3(10, 0),
-            new Vector3(10, -10),
-            new Vector3(0, -10),
-            new Vector3(-10, -10),
-            new Vector3(-10, 0),
-            new Vector3(-10, 10)
+            new(0, 10),
+            new(10, 10),
+            new(10, 0),
+            new(10, -10),
+            new(0, -10),
+            new(-10, -10),
+            new(-10, 0),
+            new(-10, 10)
         };
         
         for (int i = 0; i < rotations.Count; i++)

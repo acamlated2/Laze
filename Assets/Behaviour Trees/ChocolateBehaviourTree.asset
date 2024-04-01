@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c591079969c0b574baeda5053af81997, type: 3}
   m_Name: StartEverythingNode
   m_EditorClassIdentifier: 
-  state: 0
+  state: 2
   started: 0
   guid: cc0164367d807e145ba0fb135139681f
   position: {x: 380.00003, y: 468}
@@ -82,7 +82,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: dd394e899bd796e49955de337ba82a73
-  position: {x: 975.486, y: 826.39984}
+  position: {x: 1241.3574, y: 808.8}
   target: {fileID: 0}
   distance: 5
 --- !u!114 &-1305396391433744321
@@ -102,11 +102,11 @@ MonoBehaviour:
   guid: 5b8561b6b1d206d45b08f114bc6d6734
   position: {x: 619.486, y: 467.9999}
   children:
-  - {fileID: 3419902201019610834}
   - {fileID: 5202478413223370918}
+  - {fileID: 742642228509664447}
   check: {fileID: -812007381289596236}
   success: {fileID: 5202478413223370918}
-  failure: {fileID: 3419902201019610834}
+  failure: {fileID: 742642228509664447}
 --- !u!114 &-812007381289596236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: 9ea9cd3d2c25f8a4abd30834a6755de9
-  position: {x: 975.486, y: 934.39984}
+  position: {x: 1241.3574, y: 925.6}
   target: {fileID: 0}
   distance: 0
 --- !u!114 &11400000
@@ -186,6 +186,26 @@ MonoBehaviour:
   - {fileID: -344244314116177547}
   - {fileID: -4120866410722395699}
   - {fileID: -6165264790103904345}
+  - {fileID: 742642228509664447}
+--- !u!114 &742642228509664447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3e9b6f06919874aaf1baef3080f1b5, type: 3}
+  m_Name: ChangeTargetToPlayerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: f4b3fc9201166f149a78ed4dddd4cbb2
+  position: {x: 788.8, y: 696.8}
+  children:
+  - {fileID: 3419902201019610834}
+  shouldTargetPlayer: 0
 --- !u!114 &3419902201019610834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,11 +221,11 @@ MonoBehaviour:
   state: 2
   started: 0
   guid: 5a9b30e0a3021ad4e9f49e0301b0aa20
-  position: {x: 781.88605, y: 705.5999}
+  position: {x: 1047.7576, y: 696.8}
   children:
   - {fileID: 5797338710338202881}
-  - {fileID: -2708220029355573842}
   - {fileID: -316161042306485098}
+  - {fileID: -2708220029355573842}
   check: {fileID: 5797338710338202881}
   success: {fileID: -2708220029355573842}
   failure: {fileID: -316161042306485098}
@@ -238,10 +258,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f33787e826e9214dbe3f1d82b85980a, type: 3}
   m_Name: CheckShieldNode
   m_EditorClassIdentifier: 
-  state: 1
+  state: 2
   started: 0
   guid: 05b48afc9773618438b1e0a9b4d02eef
-  position: {x: 907.4861, y: 705.5999}
+  position: {x: 1173.3574, y: 696.8}
 --- !u!114 &5806290788775547036
 MonoBehaviour:
   m_ObjectHideFlags: 0

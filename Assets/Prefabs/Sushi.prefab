@@ -16,12 +16,12 @@ PrefabInstance:
     - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.87
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6550513739040762677, guid: 4ee1726a73f3421448031972a09e5e60,
         type: 3}
@@ -92,12 +92,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
+  maxHealth: 0
+  paused: 0
   handleAttack: 1
   attackTime: 1
-  healthBarPrefab: {fileID: 7999045155516970418, guid: 8358ddb7a8f18db42b3729157a90e8f3,
-    type: 3}
+  target: {fileID: 0}
   type: 0
   expPrefab: {fileID: 8471062301703778376, guid: d75e421c4e847a9419d55fb6171c8fef,
     type: 3}
   damage: 10
+  shouldTargetPlayer: 0
   panicDistance: 5
+  playerDistance: 0

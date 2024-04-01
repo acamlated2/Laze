@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class KnifeScript : WeaponScript
 {
+    private bool collided;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -34,9 +36,16 @@ public class KnifeScript : WeaponScript
     {
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Shield"))
         {
+            if (collided)
+            {
+                return;
+            }
+            
             Destroy(gameObject);
             
             other.gameObject.GetComponent<ObjectWithStatsScript>().Damage(damage);
+
+            collided = true;
         }
     }
 

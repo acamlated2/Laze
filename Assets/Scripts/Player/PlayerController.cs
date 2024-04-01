@@ -143,10 +143,4 @@ public class PlayerController : ObjectWithStatsScript
             _animator.SetFloat("Speed", 0);   
         }
     }
-
-    public override void Damage(float damage)
-    {
-        base.Damage(damage);
-        _hpBar.GetComponent<UIBarScript>().ChangeValue(health);
-    }
 }

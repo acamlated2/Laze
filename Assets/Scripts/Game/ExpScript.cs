@@ -9,23 +9,18 @@ public class ExpScript : MonoBehaviour
     public float value = 5;
     private float _defaultValue = 5;
 
-    private GameObject _gameController;
+    private GameControllerScript _gameController;
 
     [SerializeField] [Min(0.1f)] private float attractSpeed = 5;
     [SerializeField] [Min(0.1f)] private float maxAttractSpeed = 20;
 
-    private GameObject _expPrefab;
-
-    public int index;
+    private ObjectPoolScript pool;
 
     private void Awake()
     {
-        _gameController = GameObject.FindGameObjectWithTag("GameController");
+        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameControllerScript>();
 
-        var gameControllerScript = _gameController.GetComponent<GameControllerScript>();
-        gameControllerScript.AddToList(gameControllerScript.exps, gameObject);
-
-        _expPrefab = _gameController.GetComponent<GameControllerScript>().expPrefab;
+        pool = GameObject.FindGameObjectWithTag("ExpObjectPool").GetComponent<ObjectPoolScript>();
     }
 
     public void SetValue(float newValue)
@@ -38,41 +33,27 @@ public class ExpScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        var gameControllerScript = _gameController.GetComponent<GameControllerScript>();
-        
         if (other.gameObject.CompareTag("Player"))
         {
-            gameControllerScript.exps.Remove(gameObject);
-            
-            gameControllerScript.AddExp(value);
-            
-            Destroy(gameObject);
+            _gameController.AddExp(value);
+            pool.ReturnObject(gameObject);
         }
 
         if (other.gameObject.CompareTag("Exp"))
         {
-            int thisIndex = gameControllerScript.GetIndex(gameControllerScript.exps, gameObject);
-            int otherIndex = gameControllerScript.GetIndex(gameControllerScript.exps, other.gameObject);
-
-            if ((thisIndex == -1) || (otherIndex == -1))
-            {
-                return;
-            }
+            int thisIndex = transform.GetSiblingIndex();
+            int otherIndex = other.transform.GetSiblingIndex();
             
             if (thisIndex > otherIndex)
             {
                 float thisValue = value;
                 float otherValue = other.GetComponent<ExpScript>().value;
                 
-                gameControllerScript.exps.Remove(other.gameObject);
-                
-                gameControllerScript.exps.Remove(gameObject);
-                
-                GameObject newExp = Instantiate(_expPrefab, transform.position, Quaternion.identity);
+                pool.ReturnObject(gameObject);
+                pool.ReturnObject(other.gameObject);
+
+                GameObject newExp = pool.GetObject();
                 newExp.GetComponent<ExpScript>().SetValue(thisValue + otherValue);
-                
-                Destroy(other.gameObject);
-                Destroy(gameObject);
             }
         }
     }

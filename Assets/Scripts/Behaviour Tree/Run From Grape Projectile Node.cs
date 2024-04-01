@@ -24,6 +24,11 @@ public class RunFromGrapeProjectileNode : ActionNode
             Agent = ownerTransform.GetComponent<NavMeshAgent>();
         }
         
+        if (!Agent.isOnNavMesh)
+        {
+            return State.Failure;
+        }
+        
         GrapeProjectileScript[] projectiles = FindObjectsOfType<GrapeProjectileScript>();
 
         for (int i = 0; i < projectiles.Length; i++)
