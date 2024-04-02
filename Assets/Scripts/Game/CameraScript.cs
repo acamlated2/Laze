@@ -67,7 +67,7 @@ public class CameraScript : MonoBehaviour
             return;
         }
         
-        _locktarget.transform.position = target.transform.position + new Vector3(6, -2, 0);
+        _locktarget.transform.position = target.transform.position + new Vector3(7.2f, -2, 0);
     }
 
     private void Update()

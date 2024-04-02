@@ -25,7 +25,7 @@ public class ObjectWithStatsScript : MonoBehaviour
     protected GameObject HealthBar;
     
     public GameObject target;
-
+    
     protected virtual void Awake()
     {
         AttackTimer = attackTime;
@@ -87,7 +87,7 @@ public class ObjectWithStatsScript : MonoBehaviour
         
     }
 
-    public virtual void Damage(float damage)
+    public void Damage(float damage)
     {
         if (immortal)
         {
@@ -100,7 +100,12 @@ public class ObjectWithStatsScript : MonoBehaviour
 
         if (health <= 0)
         {
-            gameObject.SetActive(false);
+            OnZeroHealth();
         }
+    }
+
+    protected virtual void OnZeroHealth()
+    {
+        gameObject.SetActive(false);
     }
 }

@@ -17,20 +17,9 @@ public class ChocolateShieldScript : ObjectWithStatsScript
         _chocolate = _pivot.transform.parent.gameObject;
     }
 
-    public override void Damage(float damage)
+    protected override void OnZeroHealth()
     {
-        if (immortal)
-        {
-            return;
-        }
-        
-        health -= damage;
-        HealthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
-
-        if (health <= 0)
-        {
-            _pivot.SetActive(false);
-            _chocolate.GetComponent<ChocolateScript>().haveShield = false;
-        }
+        _pivot.SetActive(false);
+        _chocolate.GetComponent<ChocolateScript>().haveShield = false;
     }
 }

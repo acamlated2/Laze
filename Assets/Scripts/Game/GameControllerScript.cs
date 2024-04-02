@@ -7,30 +7,30 @@ using UnityEngine.InputSystem;
 public class GameControllerScript : MonoBehaviour
 {
     private GameObject _player;
-    
+
     // player
     private float _exp;
     private int _level = 1;
     [SerializeField] private float expToLevelUp = 100;
-    
+
     // canvas
     private GameObject _expBar;
-    
+
     // exp
     private ObjectPoolScript _expObjectPool;
     [SerializeField] [Min(0.1f)] private float expToPlayerAttractDistance = 5;
     [SerializeField] [Min(0.1f)] private float expToExpAttractDistance = 3;
-    
+
     // game controller
     private GameStateControllerScript _gameStateControllerScript;
-    
+
     private void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        
+
         _expBar = GameObject.FindGameObjectWithTag("ExpBarUI");
         _expBar.GetComponent<UIBarScript>().customText = true;
-        
+
         _gameStateControllerScript = GetComponent<GameStateControllerScript>();
 
         _expObjectPool = GameObject.FindGameObjectWithTag("ExpObjectPool").GetComponent<ObjectPoolScript>();
@@ -59,6 +59,11 @@ public class GameControllerScript : MonoBehaviour
     private void Update()
     {
         AttractExp();
+
+        if (Input.GetKeyDown("m"))
+        {
+            AddExp(50);
+        }
     }
 
     public void AddExp(float addedExp)
@@ -73,12 +78,12 @@ public class GameControllerScript : MonoBehaviour
             _level += 1;
 
             expToLevelUp += expToLevelUp * 20 / 100;
-            
+
             _expBar.GetComponent<UIBarScript>().ChangeText(_level.ToString());
-            
+
             _gameStateControllerScript.ChangeState(GameStateControllerScript.GameState.Upgrade, _player);
         }
-        
+
         _expBar.GetComponent<UIBarScript>().ChangeValue(_exp);
     }
 
@@ -94,7 +99,7 @@ public class GameControllerScript : MonoBehaviour
         {
             exps.Add(_expObjectPool.transform.GetChild(i).gameObject);
         }
-        
+
         for (int i = 0; i < exps.Count; i++)
         {
             float distanceToPlayer = Vector2.Distance(exps[i].transform.position, _player.transform.position);
@@ -111,7 +116,7 @@ public class GameControllerScript : MonoBehaviour
                 {
                     continue;
                 }
-                
+
                 float distanceToExp = Vector2.Distance(exps[i].transform.position, exps[j].transform.position);
 
                 if (distanceToExp <= expToExpAttractDistance)

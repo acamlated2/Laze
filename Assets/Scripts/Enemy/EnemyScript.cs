@@ -67,20 +67,9 @@ public class EnemyScript : ObjectWithStatsScript
         playerDistance = Vector3.Distance(transform.position, Player.transform.position);
     }
 
-    public override void Damage(float damage)
+    protected override void OnZeroHealth()
     {
-        if (immortal)
-        {
-            return;
-        }
-        
-        health -= damage;
-        HealthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
-
-        if (health <= 0)
-        {
-            Die();
-        }
+        Die();
     }
 
     protected override void Attack()
