@@ -156,12 +156,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bf654323c5e0c48bd34227b9e714b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 100
+  maxHealth: 0
+  immortal: 0
+  paused: 0
   handleAttack: 0
   attackTime: 1
-  healthBarPrefab: {fileID: 7999045155516970418, guid: 8358ddb7a8f18db42b3729157a90e8f3,
-    type: 3}
+  healthBar: {fileID: 0}
+  target: {fileID: 0}
+  defense: 1
+  attackSpeed: 1
+  damageMultiplier: 1
   speed: 10
+  _hpBar: {fileID: 0}
+  usingMouse: 1
 --- !u!114 &4051594880211241176
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -35,6 +35,7 @@ public class CreamScript : EnemyScript
         GameObject newProjectile = ProjectilePool.GetObject();
         newProjectile.transform.position = transform.position;
         newProjectile.GetComponent<CreamProjectileScript>().SetRotation(target.transform.position);
+        newProjectile.GetComponent<CreamProjectileScript>().owner = gameObject;
     }
 
     private GameObject GetClosestChocolate()

@@ -75,7 +75,7 @@ public class EnemyScript : ObjectWithStatsScript
     protected override void Attack()
     {
         // melee
-        target.GetComponent<ObjectWithStatsScript>().Damage(damage);
+        target.GetComponent<ObjectWithStatsScript>().Damage(damage * damageMultiplier);
     }
 
     protected void SpawnExp()

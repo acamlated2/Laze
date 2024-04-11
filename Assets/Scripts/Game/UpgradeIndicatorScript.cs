@@ -23,4 +23,9 @@ public class UpgradeIndicatorScript : MonoBehaviour
         float y = _defaultPos.y + Mathf.Sin(Time.time * frequency) * amplitude;
         image.transform.position = new Vector3(_defaultPos.x, y, _defaultPos.z);
     }
+
+    public void ChangePosition(Vector3 newPosition)
+    {
+        _defaultPos.x = newPosition.x;
+    }
 }

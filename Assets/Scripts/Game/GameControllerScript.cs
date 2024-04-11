@@ -23,6 +23,7 @@ public class GameControllerScript : MonoBehaviour
 
     // game controller
     private GameStateControllerScript _gameStateControllerScript;
+    private UpgradeScreenManagerScript _upgradeManager;
 
     private void Awake()
     {
@@ -34,6 +35,9 @@ public class GameControllerScript : MonoBehaviour
         _gameStateControllerScript = GetComponent<GameStateControllerScript>();
 
         _expObjectPool = GameObject.FindGameObjectWithTag("ExpObjectPool").GetComponent<ObjectPoolScript>();
+        
+        _upgradeManager = GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(2)
+                                    .GetComponent<UpgradeScreenManagerScript>();
     }
 
     private void Start()
@@ -82,6 +86,7 @@ public class GameControllerScript : MonoBehaviour
             _expBar.GetComponent<UIBarScript>().ChangeText(_level.ToString());
             _expBar.GetComponent<UIBarScript>().ChangeMaxValue(expToLevelUp);
 
+            _upgradeManager.selectedObject = _player;
             _gameStateControllerScript.ChangeState(GameStateControllerScript.GameState.Upgrade, _player);
         }
 

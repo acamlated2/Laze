@@ -332,6 +332,24 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Move Left List"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d3ced8f-167d-4296-89ce-746f4d7262d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move Right List"",
+                    ""type"": ""Button"",
+                    ""id"": ""855e1cfc-c09f-4f98-851a-f99480e6d888"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Select"",
                     ""type"": ""Button"",
                     ""id"": ""32e0ecb2-d47c-450a-884e-6a74ee65224a"",
@@ -438,6 +456,50 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""Deselect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cba05290-6e74-49fd-acd1-9879ed546c78"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Left List"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d21e4041-dca9-4342-83e5-8dbfe29d66c2"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Left List"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""989e18ad-878b-4097-98b4-e37829ab0b02"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Right List"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""099f92ef-2431-4cfc-b60a-369c0f8a7bcb"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Right List"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -515,6 +577,8 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_UpgradingMenu = asset.FindActionMap("Upgrading & Menu", throwIfNotFound: true);
         m_UpgradingMenu_MoveUpList = m_UpgradingMenu.FindAction("Move Up List", throwIfNotFound: true);
         m_UpgradingMenu_MoveDownList = m_UpgradingMenu.FindAction("Move Down List", throwIfNotFound: true);
+        m_UpgradingMenu_MoveLeftList = m_UpgradingMenu.FindAction("Move Left List", throwIfNotFound: true);
+        m_UpgradingMenu_MoveRightList = m_UpgradingMenu.FindAction("Move Right List", throwIfNotFound: true);
         m_UpgradingMenu_Select = m_UpgradingMenu.FindAction("Select", throwIfNotFound: true);
         m_UpgradingMenu_Deselect = m_UpgradingMenu.FindAction("Deselect", throwIfNotFound: true);
     }
@@ -650,6 +714,8 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private List<IUpgradingMenuActions> m_UpgradingMenuActionsCallbackInterfaces = new List<IUpgradingMenuActions>();
     private readonly InputAction m_UpgradingMenu_MoveUpList;
     private readonly InputAction m_UpgradingMenu_MoveDownList;
+    private readonly InputAction m_UpgradingMenu_MoveLeftList;
+    private readonly InputAction m_UpgradingMenu_MoveRightList;
     private readonly InputAction m_UpgradingMenu_Select;
     private readonly InputAction m_UpgradingMenu_Deselect;
     public struct UpgradingMenuActions
@@ -658,6 +724,8 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         public UpgradingMenuActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveUpList => m_Wrapper.m_UpgradingMenu_MoveUpList;
         public InputAction @MoveDownList => m_Wrapper.m_UpgradingMenu_MoveDownList;
+        public InputAction @MoveLeftList => m_Wrapper.m_UpgradingMenu_MoveLeftList;
+        public InputAction @MoveRightList => m_Wrapper.m_UpgradingMenu_MoveRightList;
         public InputAction @Select => m_Wrapper.m_UpgradingMenu_Select;
         public InputAction @Deselect => m_Wrapper.m_UpgradingMenu_Deselect;
         public InputActionMap Get() { return m_Wrapper.m_UpgradingMenu; }
@@ -675,6 +743,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @MoveDownList.started += instance.OnMoveDownList;
             @MoveDownList.performed += instance.OnMoveDownList;
             @MoveDownList.canceled += instance.OnMoveDownList;
+            @MoveLeftList.started += instance.OnMoveLeftList;
+            @MoveLeftList.performed += instance.OnMoveLeftList;
+            @MoveLeftList.canceled += instance.OnMoveLeftList;
+            @MoveRightList.started += instance.OnMoveRightList;
+            @MoveRightList.performed += instance.OnMoveRightList;
+            @MoveRightList.canceled += instance.OnMoveRightList;
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
@@ -691,6 +765,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @MoveDownList.started -= instance.OnMoveDownList;
             @MoveDownList.performed -= instance.OnMoveDownList;
             @MoveDownList.canceled -= instance.OnMoveDownList;
+            @MoveLeftList.started -= instance.OnMoveLeftList;
+            @MoveLeftList.performed -= instance.OnMoveLeftList;
+            @MoveLeftList.canceled -= instance.OnMoveLeftList;
+            @MoveRightList.started -= instance.OnMoveRightList;
+            @MoveRightList.performed -= instance.OnMoveRightList;
+            @MoveRightList.canceled -= instance.OnMoveRightList;
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
@@ -770,6 +850,8 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     {
         void OnMoveUpList(InputAction.CallbackContext context);
         void OnMoveDownList(InputAction.CallbackContext context);
+        void OnMoveLeftList(InputAction.CallbackContext context);
+        void OnMoveRightList(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
         void OnDeselect(InputAction.CallbackContext context);
     }

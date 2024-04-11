@@ -34,6 +34,11 @@ public class EnemySpawningScript : MonoBehaviour
 
     private void Update()
     {
+        if (GameStateControllerScript.Current.GetState() != GameStateControllerScript.GameState.Game)
+        {
+            return;
+        }
+        
         _timer -= 1 * Time.deltaTime;
 
         if (_timer <= 0)

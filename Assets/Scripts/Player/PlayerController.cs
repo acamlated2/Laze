@@ -70,13 +70,13 @@ public class PlayerController : ObjectWithStatsScript
     {
         base.Awake();
         
-        health = 100;
         handleAttack = false;
         
         _animator = transform.GetChild(0).GetComponent<Animator>();
 
         _hpBar = GameObject.FindGameObjectWithTag("HpBarUI");
         _hpBar.GetComponent<UIBarScript>().ChangeValue(health);
+        _hpBar.GetComponent<UIBarScript>().ChangeMaxValue(maxHealth);
         
         _camera = Camera.main;
     }

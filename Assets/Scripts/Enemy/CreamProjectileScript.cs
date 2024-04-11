@@ -12,6 +12,8 @@ public class CreamProjectileScript : MonoBehaviour
     private float _lifetimeDefault;
 
     private ObjectPoolScript _pool;
+
+    public GameObject owner;
     private void FixedUpdate()
     {
         Vector3 direction = transform.up;
@@ -44,7 +46,8 @@ public class CreamProjectileScript : MonoBehaviour
         {
             _pool.ReturnObject(gameObject);
 
-            other.GetComponent<ObjectWithStatsScript>().Damage(damage);
+            other.GetComponent<ObjectWithStatsScript>()
+                 .Damage(damage * owner.GetComponent<ObjectWithStatsScript>().damageMultiplier);
         }
     }
 

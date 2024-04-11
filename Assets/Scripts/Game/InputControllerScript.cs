@@ -16,6 +16,8 @@ public class InputControllerScript : MonoBehaviour
     // upgrading & menu input action
     private InputAction _moveUpList;
     private InputAction _moveDownList;
+    private InputAction _moveLeftList;
+    private InputAction _moveRightList;
     private InputAction _select;
     private InputAction _deselect;
     
@@ -92,6 +94,14 @@ public class InputControllerScript : MonoBehaviour
         _moveDownList = _playerInput.UpgradingMenu.MoveDownList;
         _moveDownList.Enable();
         _moveDownList.performed += menuManagerScript.MoveDownList;
+        
+        _moveLeftList = _playerInput.UpgradingMenu.MoveLeftList;
+        _moveLeftList.Enable();
+        _moveLeftList.performed += menuManagerScript.MoveLeftList;
+        
+        _moveRightList = _playerInput.UpgradingMenu.MoveRightList;
+        _moveRightList.Enable();
+        _moveRightList.performed += menuManagerScript.MoveRightList;
 
         _select = _playerInput.UpgradingMenu.Select;
         _select.Enable();
@@ -115,6 +125,8 @@ public class InputControllerScript : MonoBehaviour
         // upgrading & menu
         _moveUpList.Disable();
         _moveDownList.Disable();
+        _moveLeftList.Disable();
+        _moveRightList.Disable();
         _select.Disable();
         _deselect.Disable();
     }

@@ -49,7 +49,8 @@ public class SwordScript : WeaponScript
     {
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Shield"))
         {
-            other.gameObject.GetComponent<ObjectWithStatsScript>().Damage(damage);
+            other.gameObject.GetComponent<ObjectWithStatsScript>()
+                 .Damage(damage * player.GetComponent<ObjectWithStatsScript>().damageMultiplier);
         }
     }
 

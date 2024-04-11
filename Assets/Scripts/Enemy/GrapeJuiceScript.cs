@@ -42,6 +42,7 @@ public class GrapeJuiceScript : EnemyScript
         GameObject newProjectile = ProjectilePool.GetObject();
         newProjectile.transform.position = transform.position;
         newProjectile.GetComponent<GrapeProjectileScript>().SetRotation(target.transform.position);
+        newProjectile.GetComponent<GrapeProjectileScript>().owner = gameObject;
 
         bulletCount -= 1;
         if (bulletCount <= 0)
@@ -92,6 +93,7 @@ public class GrapeJuiceScript : EnemyScript
             targetPos.x = pos.x + rotations[i].x;
             targetPos.y = pos.y + rotations[i].y;
             newProjectile.GetComponent<GrapeProjectileScript>().SetRotation(targetPos);
+            newProjectile.GetComponent<GrapeProjectileScript>().owner = gameObject;
         }
     }
 }

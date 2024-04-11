@@ -16,9 +16,14 @@ public class GameStateControllerScript : MonoBehaviour
 
     private GameState _gameState = GameState.Menu;
 
+    private UpgradeScreenManagerScript _upgradeManager;
+
     private void Awake()
     {
         Current = this;
+        
+        _upgradeManager = GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(2)
+                                    .GetComponent<UpgradeScreenManagerScript>();
     }
 
     public void ChangeState(GameState state)
@@ -31,6 +36,7 @@ public class GameStateControllerScript : MonoBehaviour
     public void ChangeState(GameState state, GameObject target)
     {
         _gameState = state;
+        _upgradeManager.ShowStats();
 
         GameEventControllerScript.current.StateChange(target);
     }

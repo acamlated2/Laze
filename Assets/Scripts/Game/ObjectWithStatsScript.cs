@@ -21,14 +21,16 @@ public class ObjectWithStatsScript : MonoBehaviour
 
     protected GameObject GameController;
 
-    protected ObjectPoolScript HealthBarPool;
-    protected GameObject HealthBar;
+    protected ObjectPoolScript HealthBarPool; 
+    public GameObject healthBar;
     
     public GameObject target;
 
     public float defense = 1;
 
     public float attackSpeed = 1;
+
+    public float damageMultiplier = 1;
     
     protected virtual void Awake()
     {
@@ -45,10 +47,10 @@ public class ObjectWithStatsScript : MonoBehaviour
     {
         health = maxHealth;
         
-        HealthBar = HealthBarPool.GetObject();
-        HealthBar.GetComponent<HealthBarScript>().owner = transform.gameObject;
-        HealthBar.GetComponent<HealthBarScript>().ChangeMaxHealth(health);
-        HealthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
+        healthBar = HealthBarPool.GetObject();
+        healthBar.GetComponent<HealthBarScript>().owner = transform.gameObject;
+        healthBar.GetComponent<HealthBarScript>().ChangeMaxHealth(health);
+        healthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
     }
 
     protected virtual void Update()
@@ -106,7 +108,7 @@ public class ObjectWithStatsScript : MonoBehaviour
         
         health -= calculatedDamage;
         
-        HealthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
+        healthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
 
         if (health <= 0)
         {

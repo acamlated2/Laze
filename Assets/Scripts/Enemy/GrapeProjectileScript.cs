@@ -20,6 +20,8 @@ public class GrapeProjectileScript : MonoBehaviour
 
     private ObjectPoolScript _pool;
 
+    public GameObject owner;
+
     private void Awake()
     {
         _scale = transform.localScale.x;
@@ -95,7 +97,8 @@ public class GrapeProjectileScript : MonoBehaviour
             }
 
             float damage = (1 - distance / range) * maxDamage;
-            damageableObjects[i].GetComponent<ObjectWithStatsScript>().Damage(damage);
+            damageableObjects[i].GetComponent<ObjectWithStatsScript>()
+                                .Damage(damage * owner.GetComponent<ObjectWithStatsScript>().damageMultiplier);
         }
 
         _animating = true;

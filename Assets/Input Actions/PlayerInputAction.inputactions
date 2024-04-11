@@ -310,6 +310,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Move Left List",
+                    "type": "Button",
+                    "id": "0d3ced8f-167d-4296-89ce-746f4d7262d7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Move Right List",
+                    "type": "Button",
+                    "id": "855e1cfc-c09f-4f98-851a-f99480e6d888",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Select",
                     "type": "Button",
                     "id": "32e0ecb2-d47c-450a-884e-6a74ee65224a",
@@ -414,6 +432,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Deselect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cba05290-6e74-49fd-acd1-9879ed546c78",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Left List",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d21e4041-dca9-4342-83e5-8dbfe29d66c2",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Left List",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "989e18ad-878b-4097-98b4-e37829ab0b02",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Right List",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "099f92ef-2431-4cfc-b60a-369c0f8a7bcb",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Right List",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
