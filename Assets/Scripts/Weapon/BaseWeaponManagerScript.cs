@@ -55,6 +55,11 @@ public class BaseWeaponManagerScript : MonoBehaviour
 
     private void TimeAttack()
     {
+        if (GameStateControllerScript.Current.GetState() != GameStateControllerScript.GameState.Game)
+        {
+            return;
+        }
+        
         if (bursting)
         {
             HandleBursting();

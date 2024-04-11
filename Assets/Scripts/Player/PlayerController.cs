@@ -93,24 +93,13 @@ public class PlayerController : ObjectWithStatsScript
 
             _aimDir = dirToMouse;
         }
+
+        if (GameStateControllerScript.Current.GetState() != GameStateControllerScript.GameState.Game)
+        {
+            _aimDir = new Vector2(1, 0);
+        }
         
         GameController.GetComponent<WeaponManagerScript>().Aim(_aimDir);
-        
-        Vector3 searchPosition = transform.position;
-
-        // Find all colliders within the search radius and with the target tag
-        Collider[] colliders = Physics.OverlapSphere(searchPosition, 10, LayerMask.GetMask("Enemy")); // Adjust LayerMask if needed
-
-        // Loop through the colliders and check their tags
-        foreach (Collider collider in colliders)
-        {
-            if (collider.gameObject.CompareTag("Enemy"))
-            {
-                // Do something with the found object
-                Debug.Log("Found object " + collider.gameObject.name + " with tag " + "Enemy");
-                // You can access the GameObject through collider.gameObject
-            }
-        }
     }
 
     private void FixedUpdate()
@@ -142,5 +131,11 @@ public class PlayerController : ObjectWithStatsScript
         {
             _animator.SetFloat("Speed", 0);   
         }
+    }
+
+    protected override void OnDamaged()
+    {
+        base.OnDamaged();
+        _hpBar.GetComponent<UIBarScript>().ChangeValue(health);
     }
 }

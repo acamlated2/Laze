@@ -25,6 +25,10 @@ public class ObjectWithStatsScript : MonoBehaviour
     protected GameObject HealthBar;
     
     public GameObject target;
+
+    public float defense = 1;
+
+    public float attackSpeed = 1;
     
     protected virtual void Awake()
     {
@@ -72,7 +76,7 @@ public class ObjectWithStatsScript : MonoBehaviour
             return;
         }
         
-        AttackTimer -= 1 * Time.deltaTime;
+        AttackTimer -= 1 * attackSpeed * Time.deltaTime;
 
         if (AttackTimer <= 0)
         {
@@ -93,8 +97,14 @@ public class ObjectWithStatsScript : MonoBehaviour
         {
             return;
         }
+
+        float calculatedDamage = damage - defense;
+        if (calculatedDamage <= 0)
+        {
+            return;
+        }
         
-        health -= damage;
+        health -= calculatedDamage;
         
         HealthBar.GetComponent<HealthBarScript>().ChangeHealth(health);
 
@@ -102,10 +112,17 @@ public class ObjectWithStatsScript : MonoBehaviour
         {
             OnZeroHealth();
         }
+        
+        OnDamaged();
     }
 
     protected virtual void OnZeroHealth()
     {
         gameObject.SetActive(false);
+    }
+
+    protected virtual void OnDamaged()
+    {
+        
     }
 }

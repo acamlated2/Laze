@@ -80,6 +80,7 @@ public class GameControllerScript : MonoBehaviour
             expToLevelUp += expToLevelUp * 20 / 100;
 
             _expBar.GetComponent<UIBarScript>().ChangeText(_level.ToString());
+            _expBar.GetComponent<UIBarScript>().ChangeMaxValue(expToLevelUp);
 
             _gameStateControllerScript.ChangeState(GameStateControllerScript.GameState.Upgrade, _player);
         }

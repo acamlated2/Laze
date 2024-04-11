@@ -86,7 +86,8 @@ public class GrapeJuiceScript : EnemyScript
         
         for (int i = 0; i < rotations.Count; i++)
         {
-            GameObject newProjectile = Instantiate(projectile, pos, Quaternion.identity);
+            GameObject newProjectile = ProjectilePool.GetObject();
+            newProjectile.transform.position = transform.position;
             Vector3 targetPos = new Vector3();
             targetPos.x = pos.x + rotations[i].x;
             targetPos.y = pos.y + rotations[i].y;

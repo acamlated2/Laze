@@ -12,7 +12,14 @@ public class GameStateControllerScript : MonoBehaviour
         Upgrade
     }
 
+    public static GameStateControllerScript Current;
+
     private GameState _gameState = GameState.Menu;
+
+    private void Awake()
+    {
+        Current = this;
+    }
 
     public void ChangeState(GameState state)
     {
