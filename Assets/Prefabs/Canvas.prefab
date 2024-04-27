@@ -2450,6 +2450,11 @@ MonoBehaviour:
   atkSpeedText: {fileID: 5933631980505593984}
   indicator: {fileID: 5362208288597498779}
   descriptionText: {fileID: 6933743595573379476}
+  healthIncrease: 10
+  defenseIncrease: 1
+  damageIncrease: 0.2
+  attackSpeedIncrease: 0.2
+  selectedObject: {fileID: 0}
 --- !u!1 &6558785848097895711
 GameObject:
   m_ObjectHideFlags: 0
