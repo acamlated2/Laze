@@ -170,7 +170,7 @@ MonoBehaviour:
   damageMultiplier: 1
   speed: 10
   _hpBar: {fileID: 0}
-  usingMouse: 1
+  usingMouse: 0
 --- !u!114 &4051594880211241176
 MonoBehaviour:
   m_ObjectHideFlags: 0
