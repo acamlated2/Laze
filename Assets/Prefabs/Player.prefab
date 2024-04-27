@@ -162,7 +162,8 @@ MonoBehaviour:
   paused: 0
   handleAttack: 0
   attackTime: 1
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 7999045155516970418, guid: 8358ddb7a8f18db42b3729157a90e8f3,
+    type: 3}
   target: {fileID: 0}
   defense: 1
   attackSpeed: 1
